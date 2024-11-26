@@ -1,1 +1,1 @@
-../Connections/NFCConnection/YKFNFCError+Errors.h
+#import "../Connections/NFCConnection/YKFNFCError+Errors.h"

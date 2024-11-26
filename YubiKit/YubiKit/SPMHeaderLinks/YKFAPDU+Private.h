@@ -1,1 +1,1 @@
-../Connections/Shared/APDU/YKFAPDU+Private.h
+#import "../Connections/Shared/APDU/YKFAPDU+Private.h"

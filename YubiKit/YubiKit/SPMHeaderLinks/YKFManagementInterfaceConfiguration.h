@@ -1,1 +1,1 @@
-../Connections/Shared/Sessions/MGMT/YKFManagementInterfaceConfiguration.h
+#import "../Connections/Shared/Sessions/MGMT/YKFManagementInterfaceConfiguration.h"

@@ -1,1 +1,1 @@
-../Connections/Shared/Requests/FIDO2/YKFFIDO2GetInfoResponse.h
+#import "../Connections/Shared/Requests/FIDO2/YKFFIDO2GetInfoResponse.h"

@@ -1,1 +1,1 @@
-../Connections/Shared/Errors/YKFChallengeResponseError.h
+#import "../Connections/Shared/Errors/YKFChallengeResponseError.h"

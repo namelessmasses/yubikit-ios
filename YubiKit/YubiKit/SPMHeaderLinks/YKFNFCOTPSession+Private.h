@@ -1,1 +1,1 @@
-../Connections/NFCConnection/Sessions/YKFNFCOTPSession+Private.h
+#import "../Connections/NFCConnection/Sessions/YKFNFCOTPSession+Private.h"

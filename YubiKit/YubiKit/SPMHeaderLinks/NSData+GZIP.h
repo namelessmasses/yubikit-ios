@@ -1,1 +1,1 @@
-../ThirdParties/NSData+GZIP.h
+#import "../ThirdParties/NSData+GZIP.h"

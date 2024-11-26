@@ -1,1 +1,1 @@
-../YubiKitConfiguration.h
+#import "../YubiKitConfiguration.h"

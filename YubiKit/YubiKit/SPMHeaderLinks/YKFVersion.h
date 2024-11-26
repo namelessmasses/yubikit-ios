@@ -1,1 +1,1 @@
-../Connections/Shared/YKFVersion.h
+#import "../Connections/Shared/YKFVersion.h"

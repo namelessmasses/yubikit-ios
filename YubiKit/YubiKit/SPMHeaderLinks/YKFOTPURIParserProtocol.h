@@ -1,1 +1,1 @@
-../SharedModel/YKFOTPURIParserProtocol.h
+#import "../SharedModel/YKFOTPURIParserProtocol.h"

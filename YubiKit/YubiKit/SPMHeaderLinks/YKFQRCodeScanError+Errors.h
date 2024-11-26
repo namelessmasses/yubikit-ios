@@ -1,1 +1,1 @@
-../Connections/QRReaderSession/YKFQRCodeScanError+Errors.h
+#import "../Connections/QRReaderSession/YKFQRCodeScanError+Errors.h"

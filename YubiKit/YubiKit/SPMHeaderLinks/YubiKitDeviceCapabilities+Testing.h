@@ -1,1 +1,1 @@
-../YubiKitDeviceCapabilities+Testing.h
+#import "../YubiKitDeviceCapabilities+Testing.h"

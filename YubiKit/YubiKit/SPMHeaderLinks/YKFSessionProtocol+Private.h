@@ -1,1 +1,1 @@
-../Connections/Shared/Sessions/YKFSessionProtocol+Private.h
+#import "../Connections/Shared/Sessions/YKFSessionProtocol+Private.h"

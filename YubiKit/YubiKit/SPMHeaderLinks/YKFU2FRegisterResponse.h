@@ -1,1 +1,1 @@
-../Connections/Shared/Requests/U2F/YKFU2FRegisterResponse.h
+#import "../Connections/Shared/Requests/U2F/YKFU2FRegisterResponse.h"

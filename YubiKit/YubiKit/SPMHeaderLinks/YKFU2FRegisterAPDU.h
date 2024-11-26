@@ -1,1 +1,1 @@
-../Connections/Shared/APDU/U2F/YKFU2FRegisterAPDU.h
+#import "../Connections/Shared/APDU/U2F/YKFU2FRegisterAPDU.h"

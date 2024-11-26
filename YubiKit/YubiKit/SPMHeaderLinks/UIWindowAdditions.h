@@ -1,1 +1,1 @@
-../Helpers/Additions/UIWindowAdditions.h
+#import "../Helpers/Additions/UIWindowAdditions.h"

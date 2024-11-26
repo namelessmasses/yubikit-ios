@@ -1,1 +1,1 @@
-../Connections/Shared/Errors/YKFInvalidPinError.h
+#import "../Connections/Shared/Errors/YKFInvalidPinError.h"

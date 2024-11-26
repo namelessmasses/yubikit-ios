@@ -1,1 +1,1 @@
-../Connections/NFCConnection/YKFNFCConnection.h
+#import "../Connections/NFCConnection/YKFNFCConnection.h"

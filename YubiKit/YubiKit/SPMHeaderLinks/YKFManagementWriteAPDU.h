@@ -1,1 +1,1 @@
-../Connections/Shared/APDU/MGMT/YKFManagementWriteAPDU.h
+#import "../Connections/Shared/APDU/MGMT/YKFManagementWriteAPDU.h"

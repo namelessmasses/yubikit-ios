@@ -1,1 +1,1 @@
-../Connections/Shared/APDU/OATH/YKFOATHSendRemainingAPDU.h
+#import "../Connections/Shared/APDU/OATH/YKFOATHSendRemainingAPDU.h"

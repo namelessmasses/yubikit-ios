@@ -1,1 +1,1 @@
-../Connections/QRReaderSession/Views/YKFQRCodeScanOverlayView.h
+#import "../Connections/QRReaderSession/Views/YKFQRCodeScanOverlayView.h"

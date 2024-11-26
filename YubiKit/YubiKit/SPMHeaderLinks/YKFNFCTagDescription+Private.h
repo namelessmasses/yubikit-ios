@@ -1,1 +1,1 @@
-../Connections/NFCConnection/YKFNFCTagDescription+Private.h
+#import "../Connections/NFCConnection/YKFNFCTagDescription+Private.h"
