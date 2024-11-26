@@ -247,6 +247,8 @@ List of sessions is documented below with it's own specifics and samples:
 
 - [SmartCardInterface](./docs/smartcard-interface.md) - Provides low level access to the Yubikey with which you can send custom APDUs to the key
 
+- [OpenPGP](./docs/openpgp.md) - Implements basic OpenPGP use-cases using the [SmartCardInterface](./docs/smartcard-interface.md) and APDUs based on [Functional Specification of the OpenPGP Appliation on ISO Smart Card Operating Systems v3.4.1](https://gnupg.org/ftp/specs/OpenPGP-smart-card-application-3.4.1.pdf).
+
 ## Customize the Library
 YubiKit allows customizing some of its behavior by using `YubiKitConfiguration` and `YubiKitExternalLocalization`.
 <details><summary><strong>Customizing YubiKit Behavior</strong></summary><p>
