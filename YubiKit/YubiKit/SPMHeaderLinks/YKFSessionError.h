@@ -1,1 +1,1 @@
-../Connections/Shared/Errors/YKFSessionError.h
+#import "../Connections/Shared/Errors/YKFSessionError.h"

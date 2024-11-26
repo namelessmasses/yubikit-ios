@@ -1,1 +1,1 @@
-../Helpers/Additions/YKFNSStringAdditions.h
+#import "../Helpers/Additions/YKFNSStringAdditions.h"

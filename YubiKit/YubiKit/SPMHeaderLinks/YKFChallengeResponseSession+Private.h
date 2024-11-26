@@ -1,1 +1,1 @@
-../Connections/Shared/Sessions/ChalResp/YKFChallengeResponseSession+Private.h
+#import "../Connections/Shared/Sessions/ChalResp/YKFChallengeResponseSession+Private.h"

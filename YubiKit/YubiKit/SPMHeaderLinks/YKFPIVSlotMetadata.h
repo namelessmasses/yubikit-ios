@@ -1,1 +1,1 @@
-../Connections/Shared/Sessions/PIV/YKFPIVSlotMetadata.h
+#import "../Connections/Shared/Sessions/PIV/YKFPIVSlotMetadata.h"

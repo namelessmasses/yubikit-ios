@@ -1,1 +1,1 @@
-../Connections/Shared/Errors/YKFSessionError+Private.h
+#import "../Connections/Shared/Errors/YKFSessionError+Private.h"

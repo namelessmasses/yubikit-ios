@@ -1,1 +1,1 @@
-../Connections/SmartCardConnection/YKFSmartCardConnection.h
+#import "../Connections/SmartCardConnection/YKFSmartCardConnection.h"

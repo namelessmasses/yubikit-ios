@@ -1,1 +1,1 @@
-../SharedModel/YKFOTPTokenParser.h
+#import "../SharedModel/YKFOTPTokenParser.h"

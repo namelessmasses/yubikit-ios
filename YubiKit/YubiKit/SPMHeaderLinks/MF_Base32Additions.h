@@ -1,1 +1,1 @@
-../ThirdParties/MF_Base32Additions.h
+#import "../ThirdParties/MF_Base32Additions.h"

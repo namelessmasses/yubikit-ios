@@ -1,1 +1,1 @@
-../Connections/Shared/Sessions/PIV/YKFPIVManagementKeyMetadata+Private.h
+#import "../Connections/Shared/Sessions/PIV/YKFPIVManagementKeyMetadata+Private.h"

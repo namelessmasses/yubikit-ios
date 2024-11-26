@@ -1,1 +1,1 @@
-../Connections/Shared/Requests/ChalResp/YKFChalRespRequest+Private.h
+#import "../Connections/Shared/Requests/ChalResp/YKFChalRespRequest+Private.h"

@@ -1,1 +1,1 @@
-../YubiKitExternalLocalization.h
+#import "../YubiKitExternalLocalization.h"

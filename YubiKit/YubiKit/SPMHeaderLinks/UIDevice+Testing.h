@@ -1,1 +1,1 @@
-../TestExtentions/UIDevice+Testing.h
+#import "../TestExtentions/UIDevice+Testing.h"

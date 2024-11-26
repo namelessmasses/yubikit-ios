@@ -1,1 +1,1 @@
-../Connections/Shared/APDU/YKFAPDUCommandInstruction.h
+#import "../Connections/Shared/APDU/YKFAPDUCommandInstruction.h"

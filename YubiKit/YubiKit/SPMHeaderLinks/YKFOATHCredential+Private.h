@@ -1,1 +1,1 @@
-../Connections/Shared/Sessions/OATH/YKFOATHCredential+Private.h
+#import "../Connections/Shared/Sessions/OATH/YKFOATHCredential+Private.h"

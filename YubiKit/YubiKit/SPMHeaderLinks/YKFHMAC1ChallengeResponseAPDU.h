@@ -1,1 +1,1 @@
-../Connections/Shared/APDU/ChalResp/YKFHMAC1ChallengeResponseAPDU.h
+#import "../Connections/Shared/APDU/ChalResp/YKFHMAC1ChallengeResponseAPDU.h"

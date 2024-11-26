@@ -1,1 +1,1 @@
-../Connections/YKFConnectionProtocol.h
+#import "../Connections/YKFConnectionProtocol.h"

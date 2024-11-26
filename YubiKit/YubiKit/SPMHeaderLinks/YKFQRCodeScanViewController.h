@@ -1,1 +1,1 @@
-../Connections/QRReaderSession/YKFQRCodeScanViewController.h
+#import "../Connections/QRReaderSession/YKFQRCodeScanViewController.h"

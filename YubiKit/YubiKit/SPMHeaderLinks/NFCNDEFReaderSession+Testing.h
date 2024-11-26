@@ -1,1 +1,1 @@
-../TestExtentions/NFCNDEFReaderSession+Testing.h
+#import "../TestExtentions/NFCNDEFReaderSession+Testing.h"

@@ -1,1 +1,1 @@
-../Connections/Shared/Sessions/YKFManagementDeviceInfo.h
+#import "../Connections/Shared/Sessions/YKFManagementDeviceInfo.h"

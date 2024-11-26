@@ -1,1 +1,1 @@
-../YubiKitDeviceCapabilities.h
+#import "../YubiKitDeviceCapabilities.h"

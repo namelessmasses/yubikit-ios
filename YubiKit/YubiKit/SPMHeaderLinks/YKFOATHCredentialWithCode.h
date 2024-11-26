@@ -1,1 +1,1 @@
-../Connections/Shared/Sessions/OATH/YKFOATHCredentialWithCode.h
+#import "../Connections/Shared/Sessions/OATH/YKFOATHCredentialWithCode.h"

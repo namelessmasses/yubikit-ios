@@ -1,1 +1,1 @@
-../Connections/AccessoryConnection/YKFAccessoryConnection+Debugging.h
+#import "../Connections/AccessoryConnection/YKFAccessoryConnection+Debugging.h"

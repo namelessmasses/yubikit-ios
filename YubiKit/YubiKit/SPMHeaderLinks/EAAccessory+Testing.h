@@ -1,1 +1,1 @@
-../TestExtentions/EAAccessory+Testing.h
+#import "../TestExtentions/EAAccessory+Testing.h"

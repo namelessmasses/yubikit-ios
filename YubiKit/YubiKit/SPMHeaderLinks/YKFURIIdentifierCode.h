@@ -1,1 +1,1 @@
-../Connections/NFCConnection/YKFURIIdentifierCode.h
+#import "../Connections/NFCConnection/YKFURIIdentifierCode.h"
