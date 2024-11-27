@@ -1,6 +1,6 @@
 # OpenPGP SmartCard Implementation
 
-Based on the [Functional Specification of the OpenPGP Appliation on ISO Smart Card Operating Systems v3.4.1](https://gnupg.org/ftp/specs/OpenPGP-smart-card-application-3.4.1.pdf) (_The Functional Specification_).
+Based on the [Functional Specification of the OpenPGP Application on ISO Smart Card Operating Systems v3.4.1](https://gnupg.org/ftp/specs/OpenPGP-smart-card-application-3.4.1.pdf) (_The Functional Specification_).
 
 ---
 
