@@ -2,9 +2,13 @@
 
 Based on the [Functional Specification of the OpenPGP Appliation on ISO Smart Card Operating Systems v3.4.1](https://gnupg.org/ftp/specs/OpenPGP-smart-card-application-3.4.1.pdf) (_The Functional Specification_).
 
+---
+
 # Nomenclature
 
 This document assumes a familiarity with [_The Specification_](https://gnupg.org/ftp/specs/OpenPGP-smart-card-application-3.4.1.pdf) and as such uses terms and abbreviations from [_The Specification_](https://gnupg.org/ftp/specs/OpenPGP-smart-card-application-3.4.1.pdf) without further explanation. 
+
+---
 
 # ASN.1 BER-TLV
 
@@ -12,16 +16,22 @@ This document assumes a familiarity with [_The Specification_](https://gnupg.org
 
 `sz = [81 | [82 xx]] xx` is the number of bytes that follow the tag and length bytes.
 
+---
+
+# Interpreting SW1/SW2
+
+The implementation shall correctly interpret the `SW1` and `SW2` bytes in order to correctly process responses from the card.
+
+---
+
 # Minimal Use-Cases
 
-- Required to achieve minimal OpenPGP operations. 
+- Required to achieve minimally functional OpenPGP operations. 
 - Based on the basic flow charts in section 9 of _The Functional Specification_.
 - Do not support logical channels.
   - Uses `CLA=X0` for all commands.
-
-## Interpreting SW1/SW2
-
-The implementation shall correctly interpret the `SW1` and `SW2` bytes in order to correctly process responses from the card.
+- Do not support extended length APDUs.
+- Do not support KDF.
 
 ## Application Selection
 
@@ -130,13 +140,15 @@ The following minimal use-cases require authentication of `PW1` or `PW3`. Minima
 
 ## Decrypt Message
 
+---
+
 # Expanded Use-Cases
 
 ## PW Authentication
  
 Expanded use-cases shall support authentication of `PW1` and `PW3` using S2K depending on the key's KDF configuration.
 
-### Interpreting Extended Capabilities for KDF Configuration
+### Interpreting Extended Capabilities for KDF capabilities
 
 | Command    | `CLA` | `INS` | `P1` | `P2` | `Lc` | `Data`              | `Le` |
 | ---        | ---   | ---   | ---  | ---  | ---  | ---                 | ---  |
@@ -154,12 +166,28 @@ Expanded use-cases shall support authentication of `PW1` and `PW3` using S2K dep
 
 ### KDF-DO - Tag `F9`
 
-### PW Authentication using Plain Format
+Read the KDF-DO to determine the KDF configuration.
+
+| Command    | `CLA` | `INS` | `P1` | `P2` | `Lc` | `Data`              | `Le` |
+| ---        | ---   | ---   | ---  | ---  | ---  | ---                 | ---  |
+| `GET DATA` | `00`  | `CA`  | `00` | `F9` | -    | -                   | `00` |
+
+| Response Body    | Tag  | Size  | Description |
+| ---              | ---  | ---   | ---         |
+| KDF-DO           | `F9` | `sz`  | Followed by |
+|                  |      |       | |
+| KDF algorithm    | `81` | `01`  | `00` for no KDF, `03` for OpenPGP S2K. |
+| Hash algorithm   | `82` | `01`  | `08` for SHA-256, `0A` for SHA-512.    |
+| Iteration count  | `83` | `04`  | long integer. Big-endian. |
+| Salt - PW1       | `84` | `xx`  | | 
+| Salt - reset PW1 | `85` | `xx`  | |
+| Salt - PW3       | `86` | `xx`  | |
+| Initial hash PW1 | `87` | `xx`  | |
+| Initial hash PW3 | `88` | `xx`  | |
 
 ### PW Authentication using OpenPGP S2K Function
 
-At the time of authoring, section 4.3.2 of [_The Specification_](https://gnupg.org/ftp/specs/OpenPGP-smart-card-application-3.4.1.pdf) 
-
+Section 4.3.2 of [_The Specification_](https://gnupg.org/ftp/specs/OpenPGP-smart-card-application-3.4.1.pdf) specifies RFC-4880 for the S2K function. At the time of authoring, RFC-4880 has obseleted by [RFC-9580](https://www.rfc-editor.org/rfc/rfc9580#name-string-to-key-s2k-specifier).
 
 ## Extended Length APDUs
 
@@ -167,6 +195,12 @@ At the time of authoring, section 4.3.2 of [_The Specification_](https://gnupg.o
 - `7F66` contains *Extended length information* if extended length is announced in the Historical bytes `5F52`.
 
 ## Reading optional DOs
+
+### Cardholder related data - Tag `65`
+
+- Name
+
+### Public keys URL - Tag `5F50`
 
 ## Generate Private Key
 
