@@ -4,11 +4,12 @@ Based on the [Functional Specification of the OpenPGP Appliation on ISO Smart Ca
 
 # Nomenclature
 
-This document assumes a familiarity with _The Specification_ and as such uses terms and abbreviations from _The Specification_ without 
+This document assumes a familiarity with [_The Specification_](https://gnupg.org/ftp/specs/OpenPGP-smart-card-application-3.4.1.pdf) and as such uses terms and abbreviations from [_The Specification_](https://gnupg.org/ftp/specs/OpenPGP-smart-card-application-3.4.1.pdf) without further explanation. 
 
-# Initial Use-Cases
+# Minimal Use-Cases
 
-Based on the basic flow charts in section 9 of _The Functional Specification_ required for minimal OpenPGP operations.
+- Required to achieve minimal OpenPGP operations. 
+- Based on the basic flow charts in section 9 of _The Functional Specification_.
 
 ## Application Selection
 
