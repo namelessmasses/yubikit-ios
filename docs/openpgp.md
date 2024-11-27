@@ -136,7 +136,41 @@ The implementation shall correctly interpret the `SW1` and `SW2` bytes in order 
 ## PW Authentication
 
 The following minimal use-cases require authentication of `PW1` or `PW3`. Minimal use-cases shall support only passwords in plain format.
+
+### Verification
+
+| Command      | `CLA` | `INS` | `P1` | `P2` | `Lc` | `Data`                    | `Le` | Description |
+| ---          | ---   | ---   | ---  | ---  | ---  | ---                       | ---  | ---         |
+| Verify PW1   | `00`  | `20`  | `00` | `81` | `06` | `xx xx xx xx xx xx`       | -    | Verifies PW1 for a PSO:CDS command only. Valid for one or serveral attempts based on PW1 status byte in extended capabilities. |
+| Verify PW1   | `00`  | `20`  | `00` | `82` | `06` | `xx xx xx xx xx xx`       | -    | Verifies PW1 for other functions and remains valid until the next reset or `SELECT` of another application. |
+| Query PW1    | `00`  | `20`  | `00` | `81` | -    | -                         | -    | Access status returned in `SW1/SW2`. **YUBIKEY RETURNS `6A80`.** |
+| Unverify PW1 | `00`  | `20`  | `FF` | `81` | -    | -                         | -    | **YUBIKEY RETURNS `6A80`.** |
+| Verify PW3   | `00`  | `20`  | `00` | `83` | `08` | `xx xx xx xx xx xx xx xx` | -    | Verifies PW3. |
+| Query PW3    | `00`  | `20`  | `00` | `83` | -    | -                         | -    | Access status returned in `SW1/SW2`. **YUBIKEY RETURNS `6A80`.** |
+| Unverify PW3 | `00`  | `20`  | `FF` | `83` | -    | -                         | -    | **YUBIKEY RETURNS `6A80`.** |
+
+| Response   | `SW1` | `SW2` | Description  |
+| ---        | ---   | ---   | ---          |
+|            | `90`  | `00`  | Success - no other information    |
+|            | `63`  | `CX`  | Not verified. `X` denotes number of allowed retries. |
+|            | `69`  | `82`  | Security status not satisified. PW wrong. PW not checked (command not allowed). |
+|            | `69`  | `83`  | Authentication method blocked. PW blocked (error counter zero). |
+|            | `6A`  | `80`  | Incorrect parameters in command data field. |
+|            |       | `86`  | Incorrect parameteres P1-P2. |
+|            |       | `88`  | Referenced data not found. |
+|            | `6B`  | `00`  | Wrong parameters P1-P2. |
+
 ## Compute Digital Signature
+
+| Command   | `CLA` | `INS` | `P1` | `P2` | `Lc` | `Data`              | `Le` |
+| ---       | ---   | ---   | ---  | ---  | ---  | ---                 | ---  |
+| `PSO:CDS` | `00`  | `2A`  | `9E` | `9A` | `xx` | `xx xx xx xx xx xx` | `00` |
+
+| Response | `SW1` | `SW2` | Description  |
+| ---      | ---   | ---   | ---          |
+|          | `90`  | `00`  | Success - no other information    |
+|          | `69`  | `82`  | Security status not satisified. PW wrong. PW not checked (command not allowed). |
+
 
 ## Decrypt Message
 
