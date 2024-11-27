@@ -214,7 +214,7 @@ The following minimal use-cases require authentication of `PW1` or `PW3`. Minima
 ### RSA
 
 - Data field is padded with `00` padding indicator byte.
-- **Some question regarding the `section 7.2.11 PSO:DECIPHER` statement 
+- **Some questions regarding the `section 7.2.11 PSO:DECIPHER` statement**
 
 > In case of the RSA algorithm the command input (except padding indicator byte) shall be formatted according to PCKS#1 before encryption. 
 
