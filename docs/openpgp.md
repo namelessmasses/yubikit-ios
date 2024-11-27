@@ -6,6 +6,12 @@ Based on the [Functional Specification of the OpenPGP Appliation on ISO Smart Ca
 
 This document assumes a familiarity with [_The Specification_](https://gnupg.org/ftp/specs/OpenPGP-smart-card-application-3.4.1.pdf) and as such uses terms and abbreviations from [_The Specification_](https://gnupg.org/ftp/specs/OpenPGP-smart-card-application-3.4.1.pdf) without further explanation. 
 
+# ASN.1 BER-TLV
+
+## size
+
+`sz = [81 | [82 xx]] xx` is the number of bytes that follow the tag and length bytes.
+
 # Minimal Use-Cases
 
 - Required to achieve minimal OpenPGP operations. 
