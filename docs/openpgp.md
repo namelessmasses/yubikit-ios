@@ -174,6 +174,29 @@ The following minimal use-cases require authentication of `PW1` or `PW3`. Minima
 
 ## Decrypt Message
 
+| Command   | `CLA` | `INS` | `P1` | `P2` | `Lc` | `Data`              | `Le` |
+| ---       | ---   | ---   | ---  | ---  | ---  | ---                 | ---  |
+| `PSO:DEC` | `00`  | `2A`  | `80` | `86` | `xx` | `xx xx xx xx xx xx` | `00` |
+
+### RSA
+
+- Data field is padded with `00` padding indicator byte.
+- **Some question regarding the `section 7.2.11 PSO:DECIPHER` statement 
+
+> In case of the RSA algorithm the command input (except padding indicator byte) shall be formatted according to PCKS#1 before encryption. 
+
+| Description         | Length   | Value |
+| ---                 | ---      | ---   |
+| Start byte          | 1        | `00` |
+| Block type          | 1        | `02` |
+| Padding string (PS) | N -3 - L | Non-zero random bytes |
+| Separator           | 1        | `00` |
+| Data                | L        | Message |
+
+> ...The card decrypts all bytes after the padding indicator byte, checks the conformance of correct PKCS#1 padding and returns the plain text (length = message) in the response.
+
+**I'm unsure if this means that the above table is how content must be provided to `PSO:DECIPHER`, or what?**
+
 ---
 
 # Expanded Use-Cases
