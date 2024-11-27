@@ -16,6 +16,8 @@ This document assumes a familiarity with [_The Specification_](https://gnupg.org
 
 - Required to achieve minimal OpenPGP operations. 
 - Based on the basic flow charts in section 9 of _The Functional Specification_.
+- Do not support logical channels.
+  - Uses `CLA=X0` for all commands.
 
 ## Interpreting SW1/SW2
 
