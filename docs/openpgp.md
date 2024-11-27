@@ -4,6 +4,39 @@ Based on the [Functional Specification of the OpenPGP Application on ISO Smart C
 
 ---
 
+- [OpenPGP SmartCard Implementation](#openpgp-smartcard-implementation)
+- [Nomenclature](#nomenclature)
+- [ASN.1 BER-TLV](#asn1-ber-tlv)
+  - [size](#size)
+- [Interpreting SW1/SW2](#interpreting-sw1sw2)
+- [Minimal Use-Cases](#minimal-use-cases)
+  - [Application Selection](#application-selection)
+  - [Reading main DOs](#reading-main-dos)
+    - [Application Related Data - Tag `6E`](#application-related-data---tag-6e)
+    - [Card Capabilities - Historical bytes - Tag `73`](#card-capabilities---historical-bytes---tag-73)
+    - [Card service data - Historical bytes - Tag `31`](#card-service-data---historical-bytes---tag-31)
+    - [Extended legnth information - Tag `7F66`](#extended-legnth-information---tag-7f66)
+      - [Single DO](#single-do)
+    - [General Feature Management Data - Tag `7F74`](#general-feature-management-data---tag-7f74)
+      - [Single DO](#single-do-1)
+  - [PW Authentication](#pw-authentication)
+    - [Verification](#verification)
+  - [Compute Digital Signature](#compute-digital-signature)
+  - [Decrypt Message](#decrypt-message)
+    - [RSA](#rsa)
+- [Expanded Use-Cases](#expanded-use-cases)
+  - [PW Authentication](#pw-authentication-1)
+    - [Interpreting Extended Capabilities for KDF capabilities](#interpreting-extended-capabilities-for-kdf-capabilities)
+    - [KDF-DO - Tag `F9`](#kdf-do---tag-f9)
+    - [PW Authentication using OpenPGP S2K Function](#pw-authentication-using-openpgp-s2k-function)
+  - [Extended Length APDUs](#extended-length-apdus)
+  - [Reading optional DOs](#reading-optional-dos)
+    - [Cardholder related data - Tag `65`](#cardholder-related-data---tag-65)
+    - [Public keys URL - Tag `5F50`](#public-keys-url---tag-5f50)
+  - [Generate Private Key](#generate-private-key)
+  - [Client/Server Authentication](#clientserver-authentication)
+
+
 # Nomenclature
 
 This document assumes a familiarity with [_The Specification_](https://gnupg.org/ftp/specs/OpenPGP-smart-card-application-3.4.1.pdf) and as such uses terms and abbreviations from [_The Specification_](https://gnupg.org/ftp/specs/OpenPGP-smart-card-application-3.4.1.pdf) without further explanation. 
