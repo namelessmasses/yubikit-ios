@@ -23,6 +23,11 @@ Based on the [Functional Specification of the OpenPGP Application on ISO Smart C
     - [Verification](#verification)
       - [GPG Handling](#gpg-handling)
   - [Compute Digital Signature](#compute-digital-signature)
+    - [Data field](#data-field)
+      - [RSA DigestInfo](#rsa-digestinfo)
+        - [Using SHA-256](#using-sha-256)
+        - [Using SHA-384](#using-sha-384)
+        - [Using SHA-512](#using-sha-512)
   - [Decrypt Message](#decrypt-message)
     - [RSA](#rsa)
 - [Expanded Use-Cases](#expanded-use-cases)
@@ -211,6 +216,51 @@ The following minimal use-cases require authentication of `PW1` or `PW3`. Minima
 |          | `90`  | `00`  | Success - no other information    |
 |          | `69`  | `82`  | Security status not satisified. PW wrong. PW not checked (command not allowed). |
 
+### Data field
+
+#### RSA DigestInfo
+
+##### Using SHA-256
+
+| Hash-code length |
+| ---              |
+| 32 (decimal)     |
+
+| Tag | Length | Value |
+| --- | ---    | ---   |
+| `30`  | `31`     |                      |
+| `30`  | `0D`     |                      |
+| `06`  | `09`     | `608648016503040201` |
+| `05`  | `00`     | -                    |
+| `04`  | `20`     | 32-byte hash-code    |
+
+##### Using SHA-384
+
+| Hash-code length |
+| ---              |
+| 48 (decimal)     |
+
+| Tag | Length | Value |
+| --- | ---    | ---   |
+| `30`  | `41`     |                      |
+| `30`  | `0D`     |                      |
+| `06`  | `09`     | `608648016503040202` |
+| `05`  | `00`     | -                    |
+| `04`  | `30`     | 48-byte hash-code    |
+
+##### Using SHA-512
+
+| Hash-code length |
+| ---              |
+| 64 (decimal)     |
+
+| Tag | Length | Value |
+| --- | ---    | ---   |
+| `30`  | `51`     |                      |
+| `30`  | `0D`     |                      |
+| `06`  | `09`     | `608648016503040203` |
+| `05`  | `00`     | -                    |
+| `04`  | `40`     | 64-byte hash-code    |
 
 ## Decrypt Message
 
