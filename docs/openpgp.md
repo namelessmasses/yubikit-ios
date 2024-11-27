@@ -218,6 +218,8 @@ The following minimal use-cases require authentication of `PW1` or `PW3`. Minima
 
 ### Data field
 
+- DigestInfo created using a hash algorithm of the supported algorithms specified in the algorithm attributes for the signature key. The digest itself is taken from the contents of the signature packet.
+
 #### RSA DigestInfo
 
 ##### Using SHA-256
