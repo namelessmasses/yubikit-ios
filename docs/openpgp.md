@@ -51,13 +51,46 @@ The implementation shall correctly interpret the `SW1` and `SW2` bytes in order 
 
 ## PW Authentication
 
-The following minimal use-cases require authentication of `PW1` or `PW3`. Due to likelihood that YubiKeys are shipped with KDF enabled - I do not recall enabling it and it's enabled on both my primary (5Ci) and backup keys (5 NFC) - the initial use-cases shall support authentication of `PW1` and `PW3` using both plain format as S2K depending on the key's KDF configuration.
-
+The following minimal use-cases require authentication of `PW1` or `PW3`. Minimal use-cases shall support only passwords in plain format.
 ## Compute Digital Signature
 
 ## Decrypt Message
 
-# Further Use-Cases
+# Expanded Use-Cases
+
+## PW Authentication
+ 
+Expanded use-cases shall support authentication of `PW1` and `PW3` using S2K depending on the key's KDF configuration.
+
+### Interpreting Extended Capabilities for KDF Configuration
+
+| Command    | `CLA` | `INS` | `P1` | `P2` | `Lc` | `Data`              | `Le` |
+| ---        | ---   | ---   | ---  | ---  | ---  | ---                 | ---  |
+| `GET DATA` | `00`  | `CA`  | `00` | `6E` | -    | -                   | `00` |
+
+
+| Response Body | Tag  | Size  | Description |
+| ---           | ---  | ---   | ---         |
+| Discretionary data objects | `73` | 'sz' | Followed by |
+| Extended capabilities | `C0` | `0A` | |
+
+| Bit | Description |
+| --- | ---         |
+| 0   | KDF-DO (Tag `F9`) and related functionality available. |
+
+### KDF-DO - Tag `F9`
+
+### PW Authentication using Plain Format
+
+### PW Authentication using OpenPGP S2K Function
+
+At the time of authoring, section 4.3.2 of [_The Specification_](https://gnupg.org/ftp/specs/OpenPGP-smart-card-application-3.4.1.pdf) 
+
+
+## Extended Length APDUs
+
+- `2F01` contains *Extended lengthh information" if extended length is announced in the Historical bytes `5F52`.
+- `7F66` contains *Extended length information* if extended length is announced in the Historical bytes `5F52`.
 
 ## Reading optional DOs
 
