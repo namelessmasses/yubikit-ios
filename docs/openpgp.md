@@ -49,6 +49,80 @@ The implementation shall correctly interpret the `SW1` and `SW2` bytes in order 
 
 ## Reading main DOs
 
+### Application Related Data - Tag `6E`
+
+| Command    | `CLA` | `INS` | `P1` | `P2` | `Lc` | `Data` | `Le` |
+| ---        | ---   | ---   | ---  | ---  | ---  | ---    | ---  |
+| `GET DATA` | `00`  | `CA`  | `00` | `6E` | -    | -      | `00` |
+
+| Response Body                       | Tag    | Size | Description |
+| ---                                 | ---    | ---  | ---         |
+| Application related data            | `6E`   | `sz` | Followed by any of, |
+|                                     |        |      | |
+| Application identifier (AID)        | `4F`   | `sz` | Full application identifier.    |
+| Historical bytes                    | `5F52` | `sz` | First byte is _category indicator byte_; the OpenPGP application assumes `00`. Includes card service data (`31`) and card capabilities (`73`). Last 3 bytes are status indicator byte, and processing status bytes. |
+| Extended length information         | `7F66` | `08` | |
+| General feature management data     | `7F74` | `03` | |
+| Discretionary data objects          | `73`   | `sz` | Followed by any of, |
+|                                     |        |      | |
+| Extended Capabilities               | `C0`   | `0A` | |
+| Algorithm attributes signature      | `C1`   | `sz` | |
+| Algorithm attributes decryption     | `C2`   | `sz` | |
+| Algorithm attributes authentication | `C3`   | `sz` | |
+| PW status bytes                     | `C4`   | `07` | |
+| Fingerprints                        | `C5`   | `3C` | 3x20 bytes; signature, decryption, authentication in that order. Zero bytes indicates not present. |
+| CA-Fingerprints                     | `C6`   | `3C` | 3x20 bytes; signature, decryption, authentication in that order. Zero bytes indicates not present. |
+| Key generation date                 | `CD`   | `0C` | 3x4 bytes; UNIX epoch time. Zero bytes indicates not specified. |
+| Key information                     | `DE`   | `06` | 3x2 bytes; `<key ref> <status>` |
+| UIF signature                       | `D6`   | `02` | `{00=disabled,01=enabled,02=permanently enabled,03/04=reserved} {20=button/keypad}` |
+| UIF decryption                      | `D7`   | `02` | `{00=disabled,01=enabled,02=permanently enabled,03/04=reserved} {20=button/keypad}` |
+| UIF authentication                  | `D8`   | `02` | `{00=disabled,01=enabled,02=permanently enabled,03/04=reserved} {20=button/keypad}` |
+| Reserved UIF attestation            | `D9`   | `02` | Reserved |
+
+### Card Capabilities - Historical bytes - Tag `73`
+
+- Extended `Lc` and `Le` supported.
+- Extended length APDUs supported.
+
+### Card service data - Historical bytes - Tag `31`
+
+- Application selection by full DF name supported.
+- Application selection by partial DF name supported.
+- DOs in `EF.ATR/INFO`.
+  - 1 if Extended length supported.
+- `EF.DIR` and `EF.ATR/INFO` access services by the `GET DATA` command (`BER-TLV`).
+  - Should be `010` if extended length supported.
+- Card with(out) `MF`.
+
+### Extended legnth information - Tag `7F66`
+
+#### Single DO
+
+- In the case that it is not provided in the `6E` response.
+
+| Command    | `CLA` | `INS` | `P1` | `P2` | `Lc` | `Data` | `Le` |
+| ---        | ---   | ---   | ---  | ---  | ---  | ---    | ---  |
+| `GET DATA` | `00`  | `CA`  | `7F` | `66` | -    | -      | `00` |
+
+| Response Body | Tag  | Size | Description |
+| ---           | ---  | ---  | ---         |
+| Extended length information | `0202 <nn> <nn> 0202 <nn> <nn>` | | Maximum number of bytes in command APDU. Maximum number of bytes in response APDU. Both big-endian. |
+
+### General Feature Management Data - Tag `7F74`
+
+#### Single DO
+
+- In the case that it is not provided in the `6E` response.
+
+| Command    | `CLA` | `INS` | `P1` | `P2` | `Lc` | `Data` | `Le` |
+| ---        | ---   | ---   | ---  | ---  | ---  | ---    | ---  |
+| `GET DATA` | `00`  | `CA`  | `7F` | `74` | -    | -      | `00` |
+
+| Response Body | Tag  | Size | Description |
+| ---           | ---  | ---  | ---         |
+| General feature management data | `sz <nn>` | | Bitmask of supported features. The OpenPGP application defines only the the behavior for `<nn>=20` (Button). |
+
+
 ## PW Authentication
 
 The following minimal use-cases require authentication of `PW1` or `PW3`. Minimal use-cases shall support only passwords in plain format.
