@@ -21,6 +21,7 @@ Based on the [Functional Specification of the OpenPGP Application on ISO Smart C
       - [Single DO](#single-do-1)
   - [PW Authentication](#pw-authentication)
     - [Verification](#verification)
+      - [GPG Handling](#gpg-handling)
   - [Compute Digital Signature](#compute-digital-signature)
   - [Decrypt Message](#decrypt-message)
     - [RSA](#rsa)
@@ -181,6 +182,12 @@ The following minimal use-cases require authentication of `PW1` or `PW3`. Minima
 | Verify PW3   | `00`  | `20`  | `00` | `83` | `08` | `xx xx xx xx xx xx xx xx` | -    | Verifies PW3. |
 | Query PW3    | `00`  | `20`  | `00` | `83` | -    | -                         | -    | Access status returned in `SW1/SW2`. **YUBIKEY RETURNS `6A80`.** |
 | Unverify PW3 | `00`  | `20`  | `FF` | `83` | -    | -                         | -    | **YUBIKEY RETURNS `6A80`.** |
+
+#### GPG Handling
+
+- [gnupg](https://github.com/gpg/gnupg/blob/4de90281642463e56103ce4e66fc4f37012af455/scd/iso7816.c#L383) 
+  - For "query", handles `6A80` as `ISO7816_VERIFY_NO_PIN`.
+  - For "unverify, doesn't seem to support this at all. I cannot find any APDU for `CLA/INS=0020` with `P1=FF` in the codebase.
 
 | Response   | `SW1` | `SW2` | Description  |
 | ---        | ---   | ---   | ---          |
