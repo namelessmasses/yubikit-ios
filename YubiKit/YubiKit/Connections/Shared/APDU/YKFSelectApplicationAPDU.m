@@ -43,6 +43,8 @@
         case YKFSelectApplicationAPDUNameU2F:
             data = [NSData dataWithBytes:(UInt8[]){0xA0, 0x00, 0x00, 0x06, 0x47, 0x2F, 0x00, 0x01} length:8];
             break;
+        case YKFSelectApplicationAPDUNameOpenPGP:
+            data = [NSData dataWithBytes:(UInt8[]){0xD2, 0x76, 0x00, 0x01, 0x24, 0x01} length:6];
     }
     return [self initWithData:data];
 };
