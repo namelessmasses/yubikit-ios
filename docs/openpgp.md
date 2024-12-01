@@ -6,8 +6,10 @@ Based on the [Functional Specification of the OpenPGP Application on ISO Smart C
 
 - [OpenPGP SmartCard Implementation](#openpgp-smartcard-implementation)
 - [Nomenclature](#nomenclature)
-- [ASN.1 BER-TLV](#asn1-ber-tlv)
-  - [size](#size)
+- [ASN.1](#asn1)
+  - [BER-TLV - Tag-Length-Value](#ber-tlv---tag-length-value)
+  - [Length](#length)
+  - [Compact-TLV](#compact-tlv)
 - [Interpreting SW1/SW2](#interpreting-sw1sw2)
 - [Minimal Use-Cases](#minimal-use-cases)
   - [Application Selection](#application-selection)
@@ -49,11 +51,32 @@ This document assumes a familiarity with [_The Specification_](https://gnupg.org
 
 ---
 
-# ASN.1 BER-TLV
+# ASN.1
 
-## size
+## BER-TLV - Tag-Length-Value
 
-`sz = [81 | [82 xx]] xx` is the number of bytes that follow the tag and length bytes.
+| Tag | Length | Value | 
+| --- | ---    | ---   |
+| 1 or more bytes | 1 or more bytes encoded as an integer | 0 or more bytes, depending on the length |
+
+## Length
+
+While ASN.1 has a variety of length encodings, the OpenPGP application uses the following:
+
+| Length  | Encoding |
+| ---     | ---      |
+| 0-127   | 1 byte; _short form_ |
+| 0-255   | 2 bytes; `81` `nn` |
+| 0-65535 | 3 bytes; `82` `nn nn` |
+
+## Compact-TLV
+
+Tag and length share the first byte.
+
+| Bits | Description |
+| ---  | ---         |
+| 8-5  | Tag |
+| 4-1  | Length; simple 4-bit integer |
 
 ---
 
