@@ -491,11 +491,6 @@ typedef NS_ENUM(NSUInteger, YKFOpenPGPKDFAlgorithm) {
   YKFOpenPGPKDFAlgorithmNone,
   YKFOpenPGPKDFAlgorithmOpenPGPS2K
 };
-
-typedef NS_ENUM(NSUInteger, YKFOpenPGPHashAlgorithm) {
-  YKFOpenPGPHashAlgorithmSHA256,
-  YKFOpenPGPHashAlgorithmSHA512
-};
 ```
 
 ## PIN Handling Abstraction
