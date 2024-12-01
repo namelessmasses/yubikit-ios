@@ -15,9 +15,10 @@ Based on the [Functional Specification of the OpenPGP Application on ISO Smart C
   - [Application Selection](#application-selection)
   - [Reading main DOs](#reading-main-dos)
     - [Application Related Data - Tag `6E`](#application-related-data---tag-6e)
-    - [Card Capabilities - Historical bytes - Tag `73`](#card-capabilities---historical-bytes---tag-73)
-    - [Card service data - Historical bytes - Tag `31`](#card-service-data---historical-bytes---tag-31)
-    - [Extended legnth information - Tag `7F66`](#extended-legnth-information---tag-7f66)
+    - [Historical bytes - Tag `5F52`](#historical-bytes---tag-5f52)
+    - [Card Capabilities - Historical bytes - Compact-TL `73`](#card-capabilities---historical-bytes---compact-tl-73)
+    - [Card service data - Historical bytes - Compact-TL `31`](#card-service-data---historical-bytes---compact-tl-31)
+    - [Extended length information - Tag `7F66`](#extended-length-information---tag-7f66)
       - [Single DO](#single-do)
     - [General Feature Management Data - Tag `7F74`](#general-feature-management-data---tag-7f74)
       - [Single DO](#single-do-1)
@@ -132,7 +133,7 @@ The implementation shall correctly interpret the `SW1` and `SW2` bytes in order 
 | Application related data            | `6E`   | `sz` | Followed by any of, |
 |                                     |        |      | |
 | Application identifier (AID)        | `4F`   | `sz` | Full application identifier.    |
-| Historical bytes                    | `5F52` | `sz` | First byte is _category indicator byte_; the OpenPGP application assumes `00`. Includes card service data (`31`) and card capabilities (`73`). Last 3 bytes are status indicator byte, and processing status bytes. |
+| Historical bytes                    | `5F52` |      | See sections below. |
 | Extended length information         | `7F66` | `08` | |
 | General feature management data     | `7F74` | `03` | |
 | Discretionary data objects          | `73`   | `sz` | Followed by any of, |
@@ -151,12 +152,26 @@ The implementation shall correctly interpret the `SW1` and `SW2` bytes in order 
 | UIF authentication                  | `D8`   | `02` | `{00=disabled,01=enabled,02=permanently enabled,03/04=reserved} {20=button/keypad}` |
 | Reserved UIF attestation            | `D9`   | `02` | Reserved |
 
-### Card Capabilities - Historical bytes - Tag `73`
+### Historical bytes - Tag `5F52`
 
-- Extended `Lc` and `Le` supported.
-- Extended length APDUs supported.
+- Category indicator byte. The OpenPGP application assumes `00`.
+- Card capabilities (see below).
+- Card service data (see below).
+- Status indicator byte.
+  - `00`: No information given. `TERMINATE` and `ACTIVATE` are not supported.
+  - `03`: Initialization state. The OpenPGP application can be reset to default values with an `ACTIVATE` command.
+  - `05`: Operational state (activated). `TERMINATE` and `ACTIVATE` are supported.
+- Processing status bytes `SW1` and `SW2`.
 
-### Card service data - Historical bytes - Tag `31`
+#### Card Capabilities - Historical bytes - Compact-TL `73`
+
+| Bytes | Description |
+| ---   | ---         |
+| 1  | Selection methods supported by the card |
+| 2  | the _data coding byte_ | 
+| 3  | support for command chaining, extended length `Lc` and `Le`, logical channels | 
+
+#### Card service data - Historical bytes - Compact-TL `31`
 
 - Application selection by full DF name supported.
 - Application selection by partial DF name supported.
@@ -211,12 +226,6 @@ The following minimal use-cases require authentication of `PW1` or `PW3`. Minima
 | Query PW3    | `00`  | `20`  | `00` | `83` | -    | -                         | -    | Access status returned in `SW1/SW2`. **YUBIKEY RETURNS `6A80`.** |
 | Unverify PW3 | `00`  | `20`  | `FF` | `83` | -    | -                         | -    | **YUBIKEY RETURNS `6A80`.** |
 
-#### GPG Handling
-
-- [gnupg](https://github.com/gpg/gnupg/blob/4de90281642463e56103ce4e66fc4f37012af455/scd/iso7816.c#L383) 
-  - For "query", handles `6A80` as `ISO7816_VERIFY_NO_PIN`.
-  - For "unverify, doesn't seem to support this at all. I cannot find any APDU for `CLA/INS=0020` with `P1=FF` in the codebase.
-
 | Response   | `SW1` | `SW2` | Description  |
 | ---        | ---   | ---   | ---          |
 |            | `90`  | `00`  | Success - no other information    |
@@ -227,6 +236,12 @@ The following minimal use-cases require authentication of `PW1` or `PW3`. Minima
 |            |       | `86`  | Incorrect parameteres P1-P2. |
 |            |       | `88`  | Referenced data not found. |
 |            | `6B`  | `00`  | Wrong parameters P1-P2. |
+
+#### Query and Unverify - GNUPG Handling
+
+- [gnupg](https://github.com/gpg/gnupg/blob/4de90281642463e56103ce4e66fc4f37012af455/scd/iso7816.c#L383) 
+  - For "query", handles `6A80` as `ISO7816_VERIFY_NO_PIN`.
+  - For "unverify", doesn't seem to support this at all. I cannot find any APDU for `CLA=00,INS=20,P1=FF` in the codebase.
 
 ## Compute Digital Signature
 
