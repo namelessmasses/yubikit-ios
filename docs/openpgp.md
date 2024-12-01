@@ -33,6 +33,14 @@ Based on the [Functional Specification of the OpenPGP Application on ISO Smart C
         - [Using SHA-512](#using-sha-512)
   - [Decrypt Message](#decrypt-message)
     - [RSA](#rsa)
+- [Minimal API](#minimal-api)
+  - [YKFOpenPGPSession](#ykfopenpgpsession)
+    - [Initializer](#initializer)
+    - [Properties](#properties)
+    - [Methods](#methods)
+      - [Verify PIN](#verify-pin)
+      - [Compute Digital Signature](#compute-digital-signature-1)
+      - [Decrypt Message](#decrypt-message-1)
 - [Expanded Use-Cases](#expanded-use-cases)
   - [PW Authentication](#pw-authentication-1)
     - [Interpreting Extended Capabilities for KDF capabilities](#interpreting-extended-capabilities-for-kdf-capabilities)
@@ -44,6 +52,8 @@ Based on the [Functional Specification of the OpenPGP Application on ISO Smart C
     - [Public keys URL - Tag `5F50`](#public-keys-url---tag-5f50)
   - [Generate Private Key](#generate-private-key)
   - [Client/Server Authentication](#clientserver-authentication)
+    - [Using OpenPGP Certificate](#using-openpgp-certificate)
+    - [Using X.509 Certificate - Cardholder Certificate (CHC - 7F21)](#using-x509-certificate---cardholder-certificate-chc---7f21)
 
 
 # Nomenclature
@@ -329,6 +339,68 @@ The following minimal use-cases require authentication of `PW1` or `PW3`. Minima
 
 ---
 
+# Minimal API
+
+## YKFOpenPGPSession
+
+| `YKFOpenPGPLimits` |
+| ---              |
+| `maxChallengeLength : UInt16 ` |
+
+```objective-c
+typedef NS_ENUM(NSUInteger, YKFOpenPGPPINFormat) {
+  YKFOpenPGPPINFormatUTF8,
+  YKFOpenPGPPINFormatKDF,
+  YKFOpenPGPPINFormatPINBlockFormat2
+};
+
+typedef NS_ENUM(NSUInteger, YKFOpenPGPPINSelector) {
+  YKFOpenPGPPW1,
+  YKFOpenPGPPW3,
+  YKFOpenPGPPW1ResetCode,
+};
+
+typedef NS_ENUM(NSUInteger, YKFOpenPGPHashAlgorithm) {
+  YKFOpenPGPHashAlgorithmSHA256,
+  YKFOpenPGPHashAlgorithmSHA384,
+  YKFOpenPGPHashAlgorithmSHA512,
+  YKFOpenPGPHashAlgorithmECDSA
+};
+```
+
+### Initializer
+
+- `init`
+  - Selects the OpenPGP application.
+  - Reads the application related data.
+  - Reads the card capabilities.
+  - Reads the card service data.
+
+### Properties
+
+| Property | Type | Description |
+| ---      | ---  | ---         |
+| version  | `YKFVersion` | `AID` bytes 7-8. |
+| aid | `NSString` | Full application identifier formatted as a UTF-8 string. |
+| serialNumber | `NSString` | `AID` bytes 9-16 formatted as a UTF-8 string. |
+| limits | `YKFOpenPGPLimits` | Limits of the OpenPGP application. |
+| pinFormat | `YKFOpenPGPPINFormat` | Internal format expected by the card. |
+
+### Methods
+
+```objective-c
+typedef void (^YKFPINVerifyCompletion)(NSError * _Nullable error);
+```
+
+| Method | Description |
+| ---    | ---         |
+| `verifyPW1(pin : NSString, isMultishot : BOOL, completion : YKFPINVerifyCompletion) : void` | Verifies the PW1 from a basic UTF-8 string, e.g. '123456'. |
+| `verifyPW3(pin : NSString, completion : YKFPINVerifyCompletion) : void` | Verifies the PW3 from a basic UTF-8 string, e.g. '12345678'. |
+| `computeDigitalSignature(contentToSign : NSData *, hashAlgorithm : YKFOpenPGPHashAlgorithm, completion : YKFOpenPGPCDSCompletion) : void` | Computes a digital signature. |
+| `decipherMessage()
+
+---
+
 # Expanded Use-Cases
 
 ## PW Authentication
@@ -393,3 +465,52 @@ Section 4.3.2 of [_The Specification_](https://gnupg.org/ftp/specs/OpenPGP-smart
 
 ## Client/Server Authentication
 
+### Using OpenPGP Certificate
+
+### Using X.509 Certificate - Cardholder Certificate (CHC - 7F21)
+
+# Expanded API
+
+| `YKFOpenPGPLimits` |
+| ---              |
+| `maxChallengeLength : UInt16 ` |
+
+| `YKFOpenPGPPINFormatKDF` |
+| ---              |
+| `kdfAlgorithm : YKFOpenPGPKDFAlgorithm` |
+| `hashAlgorithm : YKFOpenPGPHashAlgorithm` |
+| `iterationCount : UInt32` |
+| `saltPW1 : Data` |
+| `saltResetPW1 : Data` |
+| `saltPW3 : Data` |
+| `initialHashPW1 : Data` |
+| `initialHashPW3 : Data` |
+
+```objective-c
+typedef NS_ENUM(NSUInteger, YKFOpenPGPKDFAlgorithm) {
+  YKFOpenPGPKDFAlgorithmNone,
+  YKFOpenPGPKDFAlgorithmOpenPGPS2K
+};
+
+typedef NS_ENUM(NSUInteger, YKFOpenPGPHashAlgorithm) {
+  YKFOpenPGPHashAlgorithmSHA256,
+  YKFOpenPGPHashAlgorithmSHA512
+};
+```
+
+## PIN Handling Abstraction
+
+- `@protocol YKFOpenPGPPINFormat`
+  - `YKFOpenPGPPINFormatUTF8`
+  - `YKFOpenPGPPINFormatKDF`
+  - `YKFOpenPGPPINFormatPINBlockFormat2`
+
+## Properties
+
+| Property | Type | Description |
+| ---      | ---  | ---         |
+| `pinHandler` | `YKFOpenPGPPINFormat` | Abstraction for handling variations of the PIN. |
+
+
+
+## Methods
