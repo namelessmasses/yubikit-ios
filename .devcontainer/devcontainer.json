@@ -23,7 +23,21 @@
         "vscode": {
             // Set *default* container specific settings.json values on container create.
             "settings": {
-                "lldb.library": "/usr/lib/liblldb.so"
+                "lldb.library": "/usr/lib/liblldb.so",
+                "lldb.launch.expressions": "native",
+                "editor.detectIndentation": false,
+                "editor.insertSpaces": true,
+                "editor.tabSize": 4,
+                "editor.indentSize": "tabSize",
+                "[objective-c]": {
+                    "editor.detectIndentation": false,
+                    "editor.insertSpaces": true,
+                    "editor.tabSize": 4,
+                    "editor.indentSize": "tabSize"
+                },
+                "swift.buildArguments": [
+                    "--swift-sdk arm64-apple-ios"
+                ]
             },
             // Add the IDs of extensions you want installed when the container is created.
             "extensions": [
@@ -33,7 +47,6 @@
     },
     // Use 'forwardPorts' to make a list of ports inside the container available locally.
     // "forwardPorts": [],
-
     // Set `remoteUser` to `root` to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
     "remoteUser": "vscode"
 }
