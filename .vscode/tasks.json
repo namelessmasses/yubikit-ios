@@ -1,16 +1,26 @@
 {
-    // See https://go.microsoft.com/fwlink/?LinkId=733558
-    // for the documentation about the tasks.json format
-    "version": "2.0.0",
-    "tasks": [
+	"version": "2.0.0",
+	"tasks": [
         {
-            "label": "Swift Build (SDK=iOS)",
-            "type": "shell",
+            "type": "swift",
+            "args": [
+                "build",
+                "--swift-sdk",
+                "arm64-apple-ios",
+                "-Xswiftc",
+                "-diagnostic-style=llvm"
+            ],
+            "env": {},
+            "cwd": "/workspaces/yubikit-ios",
+            "disableTaskQueue": true,
+            "showBuildStatus": "swiftStatus",
             "group": {
                 "kind": "build",
                 "isDefault": true
             },
-            "command": "swift build --swift-sdk arm64-apple-ios"
+            "problemMatcher": [],
+            "label": "swift: Build All",
+            "detail": "swift build --swift-sdk arm64-apple-ios -Xswiftc -diagnostic-style=llvm"
         }
     ]
 }
