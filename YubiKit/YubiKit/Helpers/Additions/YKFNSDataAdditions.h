@@ -72,6 +72,14 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSData *)ykf_SHA256;
 
 /*!
+ @method ykf_384
+ 
+ @return
+   The SHA384 hash of the data.
+ */
+- (NSData *)ykf_SHA384;
+
+/*!
  @method ykf_SHA512
  
  @return

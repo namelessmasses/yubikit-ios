@@ -33,6 +33,12 @@
 	return [[NSData alloc] initWithBytes:(const void *)digest length:CC_SHA256_DIGEST_LENGTH];
 }
 
+- (NSData *)ykf_SHA384 {
+    UInt8 digest[CC_SHA384_DIGEST_LENGTH];
+    CC_SHA384((const void *)[self bytes], (CC_LONG)[self length], digest);
+    return [[NSData alloc] initWithBytes:(const void *)digest length:CC_SHA384_DIGEST_LENGTH];
+}
+
 - (NSData *)ykf_SHA512 {
     UInt8 digest[CC_SHA512_DIGEST_LENGTH];
     CC_SHA512((const void *)[self bytes], (CC_LONG)[self length], digest);
