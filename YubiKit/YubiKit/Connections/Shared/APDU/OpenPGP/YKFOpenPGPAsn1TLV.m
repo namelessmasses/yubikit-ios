@@ -385,6 +385,11 @@ typedef struct {
 - (instancetype)initWithTag:(YKFOpenPGPSimpleTLVTag *)tag
                      length:(YKFOpenPGPSimpleTLVLength *)length
                       value:(NSData *)value {
+
+  if (length.integerValue != value.length) {
+    return nil;
+  }
+
   self = [super init];
   if (self == nil) {
     return nil;
@@ -408,31 +413,142 @@ typedef struct {
     return nil;
   }
 
+  UInt64 consumedByteCount = 0;
+
   // Parse the tag
-  YKFOpenPGPSimpleTLVTag *tag =
-      [[YKFOpenPGPSimpleTLVTag alloc] initWithEncodedBytes:encodedBytes];
-  if (tag == nil) {
+  self.tag = [[YKFOpenPGPSimpleTLVTag alloc] initWithEncodedBytes:encodedBytes];
+  if (self.tag == nil) {
     return nil;
   }
-  self.tag = tag;
+
+  NSMutableData *destEncodedBytes =
+      [NSMutableData dataWithCapacity:encodedBytes.length];
+  [destEncodedBytes appendData:self.tag.encodedBytes];
+  consumedByteCount += self.tag.encodedBytes.length;
 
   // Parse the length
-  YKFOpenPGPSimpleTLVLength *length = [[YKFOpenPGPSimpleTLVLength alloc]
+  self.length = [[YKFOpenPGPSimpleTLVLength alloc]
       initWithEncodedBytes:[encodedBytes
                                subdataWithRange:NSMakeRange(
-                                                    tag.encodedBytes.length,
+                                                    consumedByteCount,
                                                     encodedBytes.length)]];
+
+  if (self.length == nil) {
+    self.value = nil;
+    return self;
+  }
+
+  [destEncodedBytes appendData:self.length.encodedBytes];
+  consumedByteCount += self.length.encodedBytes.length;
+
+  self.value = [encodedBytes
+      subdataWithRange:NSMakeRange(consumedByteCount, encodedBytes.length)];
+  consumedByteCount += self.value.length;
+
+  if (consumedByteCount != encodedBytes.length) {
+    return nil;
+  }
+
+  self.encodedBytes = destEncodedBytes;
 
   return self;
 }
 
 @end
 
-#if 0
+@interface YKFOpenPGPBERTLV ()
 
+@property(nonatomic, readwrite) NSData *encodedBytes;
+@property(nonatomic, readwrite) YKFOpenPGPBERTLVTag *tag;
+@property(nonatomic, readwrite) YKFOpenPGPBERTLVLength *length;
+@property(nonatomic, readwrite) NSData *value;
 
+@end
 
 @implementation YKFOpenPGPBERTLV
+
+- (instancetype)initWithEncodedBytes:(NSData *)encodedBytes {
+  self = [super init];
+  if (self == nil) {
+    return nil;
+  }
+
+  UInt64 consumedByteCount = 0;
+
+  // Parse the tag
+  self.tag = [[YKFOpenPGPBERTLVTag alloc] initWithEncodedBytes:encodedBytes];
+  if (self.tag == nil) {
+    return nil;
+  }
+
+  NSMutableData *destEncodedBytes =
+      [NSMutableData dataWithCapacity:encodedBytes.length];
+  [destEncodedBytes appendData:self.tag.encodedBytes];
+  consumedByteCount += self.tag.encodedBytes.length;
+
+  // Parse the length
+  self.length = [[YKFOpenPGPBERTLVLength alloc]
+      initWithEncodedBytes:[encodedBytes
+                               subdataWithRange:NSMakeRange(
+                                                    consumedByteCount,
+                                                    encodedBytes.length)]];
+
+  if (self.length == nil) {
+    self.value = nil;
+    return self;
+  }
+
+  [destEncodedBytes appendData:self.length.encodedBytes];
+  consumedByteCount += self.length.encodedBytes.length;
+
+  self.value = [encodedBytes
+      subdataWithRange:NSMakeRange(consumedByteCount, encodedBytes.length)];
+
+  consumedByteCount += self.value.length;
+
+  if (consumedByteCount != encodedBytes.length) {
+    return nil;
+  }
+
+  self.encodedBytes = destEncodedBytes;
+
+  return self;
+}
+
+- (instancetype)initWithTag:(YKFOpenPGPBERTLVTag *)tag
+                     length:(YKFOpenPGPBERTLVLength *)length
+                      value:(NSData *)value {
+
+  if (tag == nil) {
+    return nil;
+  }
+
+  if (length == nil && value != nil) {
+    return nil;
+  }
+
+  if (length.integerValue != value.length) {
+    return nil;
+  }
+
+  self = [super init];
+  if (self == nil) {
+    return nil;
+  }
+
+  self.tag = tag;
+  self.length = length;
+  self.value = value;
+
+  NSMutableData *encodedBytes = [[NSMutableData alloc] init];
+  [encodedBytes appendData:self.tag.encodedBytes];
+  [encodedBytes appendData:self.length.encodedBytes];
+  [encodedBytes appendData:self.value];
+
+  self.encodedBytes = encodedBytes;
+
+  return self;
+}
 
 - (NSData *)encodedBytes {
   NSMutableData *encodedBytes = [[NSMutableData alloc] init];
@@ -443,5 +559,3 @@ typedef struct {
 }
 
 @end
-
-#endif
