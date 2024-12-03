@@ -203,6 +203,10 @@ typedef struct {
   *p2 = self.p2;
 }
 
+- (NSString *)description {
+  return [NSString stringWithFormat:@"<BER-TAG>%llu", self.tagNumber];
+}
+
 @end
 
 @interface YKFOpenPGPSimpleTLVLength ()
@@ -266,6 +270,10 @@ typedef struct {
   uint16_t iv;
   [self.encodedBytes getBytes:&iv length:sizeof(iv)];
   return ntohs(iv);
+}
+
+- (NSString *)description {
+  return [NSString stringWithFormat:@"<SIMPLE-LENGTH>%u", self.integerValue];
 }
 
 @end
@@ -366,6 +374,10 @@ typedef struct {
   return iv;
 }
 
+- (NSString *)description {
+  return [NSString stringWithFormat:@"<BER-LENGTH>%u", self.integerValue];
+}
+
 @end
 
 @interface YKFOpenPGPSimpleTLV ()
@@ -452,6 +464,11 @@ typedef struct {
   self.encodedBytes = destEncodedBytes;
 
   return self;
+}
+
+- (NSString *)description {
+  return [NSString stringWithFormat:@"<SIMPLE-TLV>%@ %@ %@",
+                                    self.tag.description, self.length.description, self.value];
 }
 
 @end
@@ -556,6 +573,11 @@ typedef struct {
   [encodedBytes appendData:self.length.encodedBytes];
   [encodedBytes appendData:self.value];
   return encodedBytes;
+}
+
+- (NSString *)description {
+  return [NSString stringWithFormat:@"<BER-TLV>%@ %@ %@",
+                                    self.tag.description, self.length.description, self.value];
 }
 
 @end
