@@ -277,8 +277,6 @@ typedef NS_ENUM(NSUInteger, YKFOpenPGPBERTLVLengthForm) {
 
 @end
 
-#if 0
-
 /**
  * @brief Representation of `BER-TLV`.
  *
@@ -299,12 +297,10 @@ typedef NS_ENUM(NSUInteger, YKFOpenPGPBERTLVLengthForm) {
  *
  * @param tag Allows multi-byte tags.
  * @param length Parses  */
-- (instancetype)initWithTag:(YKFOpenPGPBEGTag *)tag
-                     length:(YKFOpenPGPBERLength *)length
+- (instancetype)initWithTag:(YKFOpenPGPBERTLVTag *)tag
+                     length:(YKFOpenPGPBERTLVLength *)length
                       value:(NSData *)value;
 
 - (instancetype)init NS_UNAVAILABLE;
 
 @end
-
-#endif
