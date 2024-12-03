@@ -15,7 +15,7 @@
 #ifndef YKFConnectionProtocol_h
 #define YKFConnectionProtocol_h
 
-@class YKFOATHSession, YKFU2FSession, YKFFIDO2Session, YKFPIVSession, YKFChallengeResponseSession, YKFManagementSession, YKFSmartCardInterface, YKFAPDU;
+@class YKFOATHSession, YKFU2FSession, YKFFIDO2Session, YKFPIVSession, YKFChallengeResponseSession, YKFManagementSession, YKFSmartCardInterface, YKFOpenPGPSession, YKFAPDU;
 
 @protocol YKFConnectionProtocol<NSObject>
 
@@ -60,6 +60,13 @@ typedef void (^YKFManagementSessionCompletion)(YKFManagementSession *_Nullable, 
 /// @param completion The completion handler that gets called once the application is selected on
 ///                   the YubiKey. This handler is executed on a background thread.
 - (void)managementSession:(YKFManagementSessionCompletion _Nonnull)completion;
+
+typedef void (^YKFOpenPGPSessionCompletion)(YKFOpenPGPSession *_Nullable, NSError* _Nullable);
+
+/// @abstract Returns a YKFOpenPGPSession for interacting with the OpenPGP application on the YubiKey.
+/// @param completion The completion handler that gets called once the application is selected on
+///                   the YubiKey. This handler is executed on a background thread.
+- (void)openPGPSession:(YKFOpenPGPSessionCompletion _Nonnull)completion;
 
 /// @abstract The smart card interface to the YubiKey.
 /// @discussion Use this for communicating with the YubiKey by sending APDUs to the it. Only use this
