@@ -1,7 +1,7 @@
 #import "YKFOpenPGPComputeDigitalSignatureAPDU.h"
 #import "YKFNSDataAdditions.h"
-#import "YKFOpenPGPHashAlgorithm.h"
 #import "YKFOpenPGPAsn1TLV.h"
+#import "YKFOpenPGPHashAlgorithm.h"
 #import <Foundation/Foundation.h>
 
 typedef struct __attribute__((__packed__)) {
@@ -81,17 +81,8 @@ typedef struct __attribute__((__packed__)) {
   }
 
   case YKFOpenPGPHashAlgorithmECDSA:
-  default: {
-
-    // Raise an error if the hash algorithm is not supported
-    @throw [NSException
-        exceptionWithName:NSInvalidArgumentException
-                   reason:[NSString stringWithFormat:
-                                        @"Unsupported hash algorithm: %ld",
-                                        (long)hashAlgorithm]
-                 userInfo:nil];
-    break;
-  }
+  default:
+    return nil;
   }
 
   return [super initWithCla:0x00
