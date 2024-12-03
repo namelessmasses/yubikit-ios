@@ -3,8 +3,13 @@
 
 @implementation YKFOpenPGPGetDataAPDU
 
-- (instancetype)initWithP1:(UInt8)p1 P2:(UInt8)p2 data:(NSData *)data {
-    return [super initWithCla:0x00 ins:0xCA p1:p1 p2:p2 data:data type:YKFAPDUTypeShort];
+- (instancetype)initWithTag:(id<YKFOpenPGPTLVTagProtocol>)tag {
+  return [super
+      initWithData:[NSData dataWithBytes:
+                               (UInt8[]){
+                                   0x00, 0xCA, tag.p1, tag.p2,
+                                   /* lc = empty, data = empty, le = 00 */ 0x00}
+                                  length:5]];
 }
 
 @end
