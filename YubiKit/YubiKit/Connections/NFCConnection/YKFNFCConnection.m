@@ -138,6 +138,21 @@
     }];
 }
 
+- (void)openPGPSession:(YKFOpenPGPSessionCompletion _Nonnull)completion {
+    [self.currentSession clearSessionState];
+#if YKF_NFC_SUPPORTS_OPENPGP
+    [YKFOpenPGPSession sessionWithConnectionController:self.connectionController
+                                            completion:^(YKFOpenPGPSession *_Nullable session, NSError * _Nullable error) {
+        self.currentSession = session;
+        completion(session, error);
+    }];
+#else
+    completion(nil, [NSError errorWithDomain:YKFNFCConnectionErrorDomain 
+                                        code:YKFNFCConnectionErrorCodeNotSupported 
+                                    userInfo:@{NSLocalizedDescriptionKey: @"OpenPGP session not supported by YKFNFCConnection."}]);
+#endif
+}
+
 - (void)executeRawCommand:(NSData *)data completion:(YKFRawComandCompletion)completion {
     YKFAPDU *apdu = [[YKFAPDU alloc] initWithData:data];
     [self.connectionController execute:apdu completion:^(NSData * _Nullable data, NSError * _Nullable error, NSTimeInterval executionTime) {

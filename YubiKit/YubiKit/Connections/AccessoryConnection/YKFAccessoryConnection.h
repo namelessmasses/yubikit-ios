@@ -17,6 +17,12 @@
 
 #import "YKFConnectionProtocol.h"
 
+extern NSString * _Nonnull const YKFAccessoryConnectionErrorDomain;
+
+typedef NS_ENUM(NSUInteger, YKFAccessoryConnectionErrorCode) {
+    YKFAccessoryConnectionErrorCodeNotSupported = 1
+};
+
 /**
  * ---------------------------------------------------------------------------------------------------------------------
  * @name YKFAccessorySession Types

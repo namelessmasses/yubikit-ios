@@ -39,12 +39,15 @@
 #import "YKFAccessoryDescription+Private.h"
 #import "YKFManagementSession+Private.h"
 #import "YKFManagementSession.h"
+#import "YKFOpenPGPSession.h"
 
 #import "EAAccessory+Testing.h"
 #import "EASession+Testing.h"
 
 #import "YKFSessionError.h"
 #import "YKFSessionError+Private.h"
+
+NSString * _Nonnull const YKFAccessoryConnectionErrorDomain = @"com.yubico.accessory-connection";
 
 #pragma mark - Private Block Types
 
@@ -180,6 +183,21 @@ static NSTimeInterval const YubiAccessorySessionStreamOpenDelay = 0.2; // second
         self.currentSession = session;
         callback(session, error);
     }];
+}
+
+- (void)openPGPSession:(YKFOpenPGPSessionCompletion _Nonnull)completion {
+    [self.currentSession clearSessionState];
+#if YKF_ACCESSORY_SUPPORTS_OPENPGP
+    [YKFOpenPGPSession sessionWithConnectionController:self.connectionController
+                                            completion:^(YKFOpenPGPSession *_Nullable session, NSError * _Nullable error) {
+        self.currentSession = session;
+        completion(session, error);
+    }];
+#else
+    completion(nil, [[NSError alloc] initWithDomain:YKFAccesoryConnectionErrorDomain
+                                                code:YKFAccessoryConnectionErrorNotSupported
+                                           userInfo:@{NSLocalizedDescriptionKey: @"OpenPGP session not supported by YKFAccessoryConnection."}]);
+#endif
 }
 
 - (void)executeRawCommand:(NSData *)data completion:(YKFRawComandCompletion)completion {
