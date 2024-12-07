@@ -1,8 +1,20 @@
 #import "YKFOpenPGPSession.h"
+#import "../../../SmartCardInterface/YKFSmartCardInterface.h"
 #import "../../APDU/OpenPGP/YKFOpenPGPAsn1TLV.h"
+#import "../../APDU/OpenPGP/YKFOpenPGPHashAlgorithm.h"
 #import "../../APDU/YKFSelectApplicationAPDU.h"
+#import "../../YKFVersion.h"
 #import <Foundation/Foundation.h>
 
+@interface YKFOpenPGPLimits()
+
+@property (nonatomic, readwrite) NSUInteger maxChallengeLength;
+
+@end
+
+static NSString *const YKFOpenPGPSessionErrorDomain =
+    @"com.yubico.ykf.openpgp-session";
+    
 @interface YKFOpenPGPSession ()
 
 @property(nonatomic, readwrite) YKFOpenPGPLimits *limits;
@@ -12,68 +24,88 @@
 @property(nonatomic, readwrite) YKFOpenPGPPINFormat pinFormat;
 
 @property(nonatomic) id<YKFConnectionControllerProtocol> connectionController;
+@property(nonatomic, readwrite) YKFSmartCardInterface *smartCardInterface;
 
 @end
 
 @implementation YKFOpenPGPSession
 
-- (void)requestApplicationData {
-  YKFOpenPGPApplicationRelatedDataAPDU *apdu =
-      [[YKFOpenPGPApplicationRelatedDataAPDU alloc] init];
-
-  [self execute:apdu
-      completion:^(NSData *response, NSError *error) {
-        if (error) {
-          return;
-        }
-
-        [self parseApplicationDataResponse:response];
-      }];
+- (void)completeSelectApplicationResponse:(NSData *)response
+                                    error:(NSError *)error {
+  if (error) {
+    // TODO log error
+    return;
+  }
 }
 
-- (void)parseApplicationDataResponse:(NSData *)response {
-  // Parse the application data from the response bytes.
-  YKFOpenPGPBERTLV *applicationRelatedData =
-      [[YKFOpenPGPBERTLV alloc] initWithData:response];
++ (void)sessionWithConnectionController:
+            (id<YKFConnectionControllerProtocol>)connectionController
+                             completion:
+                                 (YKFOpenPGPSessionCompletion)completion0 {
+  YKFOpenPGPSession *session = [YKFOpenPGPSession new];
 
-  YKFOpenPGPBERTLV *firstDO =
-      [[YKFOpenPGPBERTLV alloc] initWithData:applicationRelatedData.value];
-      
-}
-
-- (void)readApplicationRelatedDataWithCompletion:^(NSData *response,
-                                                   NSError *error)completion {
-}
-
-- (instancetype)initWithConnectionController:
-                    (id<YKFConnectionControllerProtocol>)connectionController
-                                  completion:
-                                      (YKFOpenPGPSessionCompletion)completion {
-  self = [super init];
-  if (self == nil) {
-    return nil;
+  if (session == nil) {
+    completion0(nil,
+                [[NSError alloc]
+                    initWithDomain:YKFOpenPGPSessionErrorDomain
+                              code:YKFOpenPGPSessionErrorCodeSessionCreation
+                          userInfo:@{
+                            NSLocalizedDescriptionKey :
+                                @"Failed to create OpenPGP session."
+                          }]);
+    return;
   }
 
-  self.connectionController = connectionController;
+  session.limits = [YKFOpenPGPLimits new];
+
+  session.smartCardInterface = [[YKFSmartCardInterface alloc]
+      initWithConnectionController:connectionController];
 
   YKFSelectApplicationAPDU *selectApplicationAPDU =
       [[YKFSelectApplicationAPDU alloc]
           initWithApplicationName:YKFSelectApplicationAPDUNameOpenPGP];
 
   // select the OpenPGP application
-  [connectionController execute:YKFSelectApplicationAPDU
-                     completion:^(NSData *response, NSError *error) {
-                       if (error) {
-                         return;
-                       }
+  [connectionController execute:selectApplicationAPDU
+                     completion:^(NSData *_Nullable response,
+                                  NSError *_Nullable error, NSTimeInterval ti) {
+                       [session completeSelectApplicationResponse:response
+                                                            error:error];
                      }];
 
   // Read application related data
-  [self requestApplicationData];
 
   // Read card capabilities
 
   // Read card service data
 
-  return nil;
+  completion0(session, nil);
 }
+
+- (void)verifyPW1:(NSString *)pw1
+      isMultishot:(BOOL)isMultishot
+       completion:(YKFOpenPGPPINVerifyCompletion)completion {
+  // TODO
+}
+
+- (void)verifyPW3:(NSString *)pw3
+       completion:(YKFOpenPGPPINVerifyCompletion)completion {
+  // TODO
+}
+
+- (void)computeDigitalSignatureWithData:(NSData *)data
+                          hashAlgorithm:(YKFOpenPGPHashAlgorithm)hashAlgorithm
+                             completion:(YKFOpenPGPCDSCompletion)completion {
+  // TODO
+}
+
+- (void)decipherData:(NSData *)data
+          completion:(YKFOpenPGPDecipherCompletion)completion {
+  // TODO
+}
+
+- (void)clearSessionState {
+  // TODO
+}
+
+@end

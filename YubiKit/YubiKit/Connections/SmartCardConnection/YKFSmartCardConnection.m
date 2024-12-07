@@ -25,6 +25,9 @@
 #import "YKFSmartCardInterface.h"
 #import "YKFChallengeResponseSession+Private.h"
 
+/// TODO adopt the YKFOpenPGPSession+Private.h header
+#import "YKFOpenPGPSession.h"
+
 NSString* const YKFSmartCardConnectionErrorDomain = @"com.yubico.smart-card-connection";
 
 @interface YKFSmartCardConnection()
