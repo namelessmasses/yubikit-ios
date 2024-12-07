@@ -47,7 +47,12 @@
 #import "YKFSessionError.h"
 #import "YKFSessionError+Private.h"
 
-NSString * _Nonnull const YKFAccessoryConnectionErrorDomain = @"com.yubico.accessory-connection";
+static NSString *_Nonnull const YKFAccessoryConnectionErrorDomain =
+    @"com.yubico.accessory-connection";
+
+typedef NS_ENUM(NSUInteger, YKFAccessoryErrorCode) {
+  YKFAccessoryConnectionErrorCodeNotSupported = 1,
+};
 
 #pragma mark - Private Block Types
 
