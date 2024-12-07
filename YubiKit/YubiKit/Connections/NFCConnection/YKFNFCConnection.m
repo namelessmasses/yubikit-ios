@@ -39,6 +39,14 @@
 #import "YKFSessionError.h"
 #import "YKFSessionError+Private.h"
 
+#import <Foundation/Foundation.h>
+
+static NSString* const YKFNFCConnectionErrorDomain = @"com.yubico.ykf.nfc-connection";
+
+typedef NS_ENUM(NSUInteger, YKFNFCConnectionErrorCode) {
+    YKFNFCConnectionErrorCodeNotSupported = 1,
+};
+
 @interface YKFNFCConnection()<NFCTagReaderSessionDelegate>
 
 @property (nonatomic, readwrite) YKFNFCConnectionState nfcConnectionState;
