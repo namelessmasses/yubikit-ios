@@ -3,18 +3,16 @@
 #import "../../APDU/OpenPGP/YKFOpenPGPAsn1TLV.h"
 #import "../../APDU/OpenPGP/YKFOpenPGPHashAlgorithm.h"
 #import "../../APDU/YKFSelectApplicationAPDU.h"
+#import "../../Errors/YKFOpenPGPError.h"
 #import "../../YKFVersion.h"
 #import <Foundation/Foundation.h>
 
-@interface YKFOpenPGPLimits()
+@interface YKFOpenPGPLimits ()
 
-@property (nonatomic, readwrite) NSUInteger maxChallengeLength;
+@property(nonatomic, readwrite) NSUInteger maxChallengeLength;
 
 @end
 
-static NSString *const YKFOpenPGPSessionErrorDomain =
-    @"com.yubico.ykf.openpgp-session";
-    
 @interface YKFOpenPGPSession ()
 
 @property(nonatomic, readwrite) YKFOpenPGPLimits *limits;
@@ -46,32 +44,40 @@ static NSString *const YKFOpenPGPSessionErrorDomain =
 
   if (session == nil) {
     completion0(nil,
-                [[NSError alloc]
-                    initWithDomain:YKFOpenPGPSessionErrorDomain
-                              code:YKFOpenPGPSessionErrorCodeSessionCreation
-                          userInfo:@{
-                            NSLocalizedDescriptionKey :
-                                @"Failed to create OpenPGP session."
-                          }]);
+                [YKFOpenPGPError
+                    errorWithDomain:YKFOpenPGPErrorDomainImplementationSpecific
+                               code:YKFOpenPGPErrorCodeSessionCreation]);
     return;
   }
 
-  session.limits = [YKFOpenPGPLimits new];
-
   session.smartCardInterface = [[YKFSmartCardInterface alloc]
       initWithConnectionController:connectionController];
+  if (session.smartCardInterface == nil) {
+    completion0(nil,
+                [YKFOpenPGPError
+                    errorWithDomain:YKFOpenPGPErrorDomainImplementationSpecific
+                               code:YKFOpenPGPErrorCodeSmartCardInterface]);
+    return;
+  }
 
   YKFSelectApplicationAPDU *selectApplicationAPDU =
       [[YKFSelectApplicationAPDU alloc]
           initWithApplicationName:YKFSelectApplicationAPDUNameOpenPGP];
 
   // select the OpenPGP application
-  [connectionController execute:selectApplicationAPDU
-                     completion:^(NSData *_Nullable response,
-                                  NSError *_Nullable error, NSTimeInterval ti) {
-                       [session completeSelectApplicationResponse:response
-                                                            error:error];
-                     }];
+  [session.smartCardInterface
+      executeCommand:selectApplicationAPDU
+          completion:^(NSData *_Nullable response, NSError *_Nullable error) {
+            if (error) {
+              completion0(
+                  nil,
+                  [YKFOpenPGPError
+                      errorWithDomain:YKFOpenPGPErrorDomainSelectApplication
+                                 code:error.code]);
+              return;
+            }
+            [session completeSelectApplicationResponse:response error:error];
+          }];
 
   // Read application related data
 
