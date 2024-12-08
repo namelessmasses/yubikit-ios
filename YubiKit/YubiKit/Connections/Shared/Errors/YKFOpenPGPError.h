@@ -46,6 +46,7 @@ typedef NS_ENUM(NSUInteger, YKFOpenPGPErrorCode) {
   YKFOpenPGPErrorCodeInvalidVersion = 0x00050000,
   YKFOpenPGPErrorCodeInvalidPinFormat = 0x00060000,
   YKFOpenPGPErrorCodeInvalidMaxChallengeLength = 0x00070000,
+  YFKOpenPGPErrorCodeParseError = 0xfffe0000,
   YKFOpenPGPErrorCodeUnknownError = 0xffff0000
 };
 
@@ -55,6 +56,10 @@ typedef NS_ENUM(NSUInteger, YKFOpenPGPErrorCode) {
 
 - (instancetype)initWithDomain:(YKFOpenPGPErrorDomain)domain
                           code:(YKFOpenPGPErrorCode)code;
+
+- (instancetype)initWithDomain:(YKFOpenPGPErrorDomain)domain
+                          code:(YKFOpenPGPErrorCode)code
+                      userInfo:(NSDictionary<NSErrorUserInfoKey, id> *)dict;
 
 + (instancetype)errorWithDomain:(YKFOpenPGPErrorDomain)domain
                            code:(YKFOpenPGPErrorCode)code;
