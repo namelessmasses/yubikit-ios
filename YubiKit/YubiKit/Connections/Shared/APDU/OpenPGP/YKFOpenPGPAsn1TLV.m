@@ -39,6 +39,15 @@
   return v;
 }
 
+- (UInt64)decodedTag {
+  UInt64 dt = 0;
+  for (int i = 0; i < self.encodedBytes.length; ++i) {
+    dt = (dt << 8) | ((UInt8 *)self.encodedBytes.bytes)[i];
+  }
+
+  return dt;
+}
+
 - (UInt8)p1 {
   return 0x00;
 }
@@ -180,6 +189,15 @@ typedef struct {
 - (UInt64)tagNumber {
   return [YKFOpenPGPBERTLVTag tagNumberFromEncodedBytes:self.encodedBytes]
       .tagNumber;
+}
+
+- (UInt64)decodedTag {
+  UInt64 dt = 0;
+  for (int i = 0; i < self.encodedBytes.length; ++i) {
+    dt = (dt << 8) | ((UInt8 *)self.encodedBytes.bytes)[i];
+  }
+
+  return dt;
 }
 
 - (UInt8)p1 {

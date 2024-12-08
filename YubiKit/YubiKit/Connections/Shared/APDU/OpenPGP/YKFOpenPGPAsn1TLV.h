@@ -82,6 +82,8 @@ typedef NS_ENUM(NSUInteger, YKFOpenPGPTag) {
  */
 @property(nonatomic, readonly) UInt64 tagNumber;
 
+@property(nonatomic, readonly) UInt64 decodedTag;;
+
 /**
  * @brief Extract the byte of the tag when passing P1 in a command APDU.
  */
