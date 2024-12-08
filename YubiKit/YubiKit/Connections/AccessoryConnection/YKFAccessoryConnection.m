@@ -199,9 +199,10 @@ static NSTimeInterval const YubiAccessorySessionStreamOpenDelay = 0.2; // second
         completion(session, error);
     }];
 #else
-    completion(nil, [[NSError alloc] initWithDomain:YKFAccesoryConnectionErrorDomain
-                                                code:YKFAccessoryConnectionErrorNotSupported
-                                           userInfo:@{NSLocalizedDescriptionKey: @"OpenPGP session not supported by YKFAccessoryConnection."}]);
+    completion(nil, [NSError 
+                        errorWithDomain:YKFAccessoryConnectionErrorDomain
+                                  code:YKFAccessoryConnectionErrorCodeNotSupported
+                              userInfo:@{NSLocalizedDescriptionKey: @"OpenPGP session not supported by YKFAccessoryConnection."}]);
 #endif
 }
 
