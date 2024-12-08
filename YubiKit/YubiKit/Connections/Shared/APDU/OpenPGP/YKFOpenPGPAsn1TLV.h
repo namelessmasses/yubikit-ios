@@ -70,7 +70,7 @@ typedef NS_ENUM(NSUInteger, YKFOpenPGPTag) {
  *
  * Provides an abstraction across SIMPLE-TLV and BER-TLV tags.
  */
-@protocol YKFOpenPGPTLVTagProtocol
+@protocol YKFOpenPGPTLVTagProtocol <NSObject>
 
 /**
  * @brief Bytes of an encoded tag. Allows multi-byte tags.
