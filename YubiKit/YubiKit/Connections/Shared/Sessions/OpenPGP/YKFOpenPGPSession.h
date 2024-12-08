@@ -26,38 +26,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface YKFOpenPGPSession : NSObject <YKFVersionProtocol, YKFSessionProtocol>
 
 /**
- * @enum YKFOpenPGPSessionErrorCode
- * @brief Error codes specific to YKFOpenPGPSession.
- *
- * @constant YKFOpenPGPSessionErrorCodeSessionCreation
- *          Indicates an error occurred during session creation.
- * @constant YKFOpenPGPSessionErrorCodeInvalidConnectionController
- *          Indicates an invalid connection controller was provided.
- * @constant YKFOpenPGPSessionErrorCodeInvalidAID
- *          Indicates an invalid Application Identifier (AID) was provided.
- * @constant YKFOpenPGPSessionErrorCodeInvalidSerialNumber
- *          Indicates an invalid serial number was provided.
- * @constant YKFOpenPGPSessionErrorCodeInvalidVersion
- *          Indicates an invalid version was provided.
- * @constant YKFOpenPGPSessionErrorCodeInvalidPinFormat
- *          Indicates an invalid PIN format was provided.
- * @constant YKFOpenPGPSessionErrorCodeInvalidLimits
- *          Indicates invalid limits were provided.
- * @constant YKFOpenPGPSessionErrorCodeInvalidSession
- *          Indicates an invalid session was detected.
- */
-typedef NS_ENUM(NSInteger, YKFOpenPGPSessionErrorCode) {
-  YKFOpenPGPSessionErrorCodeSessionCreation,
-  YKFOpenPGPSessionErrorCodeInvalidConnectionController,
-  YKFOpenPGPSessionErrorCodeInvalidAID,
-  YKFOpenPGPSessionErrorCodeInvalidSerialNumber,
-  YKFOpenPGPSessionErrorCodeInvalidVersion,
-  YKFOpenPGPSessionErrorCodeInvalidPinFormat,
-  YKFOpenPGPSessionErrorCodeInvalidLimits,
-  YKFOpenPGPSessionErrorCodeInvalidSession
-} NS_SWIFT_NAME(YKFOpenPGPSession.ErrorCode);
-
-/**
  * @enum YKFOpenPGPPINFormat
  * @brief Enumeration for the format of the OpenPGP PIN.
  *
