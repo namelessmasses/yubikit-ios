@@ -489,8 +489,9 @@ typedef struct {
 }
 
 - (NSString *)description {
-  return [NSString stringWithFormat:@"<SIMPLE-TLV>%@ %@ %@",
-                                    self.tag.description, self.length.description, self.value];
+  return
+      [NSString stringWithFormat:@"<SIMPLE-TLV>%@ %@ %@", self.tag.description,
+                                 self.length.description, self.value];
 }
 
 @end
@@ -602,8 +603,8 @@ typedef struct {
 }
 
 - (NSString *)description {
-  return [NSString stringWithFormat:@"<BER-TLV>%@ %@ %@",
-                                    self.tag.description, self.length.description, self.value];
+  return [NSString stringWithFormat:@"<BER-TLV>%@ %@ %@", self.tag.description,
+                                    self.length.description, self.value];
 }
 
 @end
