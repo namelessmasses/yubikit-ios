@@ -65,6 +65,10 @@ typedef NS_ENUM(NSUInteger, YKFOpenPGPErrorCode) {
 + (instancetype)errorWithDomain:(YKFOpenPGPErrorDomain)domain
                            code:(YKFOpenPGPErrorCode)code;
 
++ (instancetype)errorWithDomain:(YKFOpenPGPErrorDomain)domain
+                           code:(YKFOpenPGPErrorCode)code
+                       userInfo:(NSDictionary<NSErrorUserInfoKey, id> *)dict;
+
 + (void)buildErrorMap;
 
 @end

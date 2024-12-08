@@ -9,6 +9,13 @@ static NSDictionary<NSNumber *, NSString *> *errorCode;
 
 - (instancetype)initWithDomain:(YKFOpenPGPErrorDomain)domain
                           code:(YKFOpenPGPErrorCode)code {
+  return [self initWithDomain:domain code:code userInfo:nil];
+}
+
+- (instancetype)initWithDomain:(YKFOpenPGPErrorDomain)domain
+                          code:(YKFOpenPGPErrorCode)code
+                      userInfo:(NSDictionary<NSErrorUserInfoKey, id> *)dict {
+
   NSString *domainDescription = errorDomain[@(domain)];
   if (domainDescription == nil) {
     domainDescription = @"com.yubico.ykf.openpgp";
@@ -19,21 +26,34 @@ static NSDictionary<NSNumber *, NSString *> *errorCode;
     errorDescription = @"An unknown error occurred";
   }
 
+  NSMutableDictionary *userInfo =
+      (dict != nil) ? [NSMutableDictionary dictionaryWithDictionary:dict]
+                    : [NSMutableDictionary new];
+  userInfo[NSLocalizedDescriptionKey] = errorDescription;
+  
   return [super initWithDomain:domainDescription
                           code:code
-                      userInfo:@{NSLocalizedDescriptionKey : errorDescription}];
+                      userInfo:userInfo];
 }
 
 static dispatch_once_t buildErrorMapOnceToken;
 
 + (instancetype)errorWithDomain:(YKFOpenPGPErrorDomain)domain
                            code:(YKFOpenPGPErrorCode)code {
+  return [YKFOpenPGPError errorWithDomain:domain code:code userInfo:nil];
+}
+
++ (instancetype)errorWithDomain:(YKFOpenPGPErrorDomain)domain
+                           code:(YKFOpenPGPErrorCode)code
+                       userInfo:(NSDictionary<NSErrorUserInfoKey, id> *)dict {
 
   dispatch_once(&buildErrorMapOnceToken, ^{
     [YKFOpenPGPError buildErrorMap];
   });
 
-  return [[YKFOpenPGPError alloc] initWithDomain:domain code:code];
+  return [[YKFOpenPGPError alloc] initWithDomain:domain
+                                            code:code
+                                        userInfo:dict];
 }
 
 + (void)buildErrorMap {
