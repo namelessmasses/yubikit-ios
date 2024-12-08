@@ -9,6 +9,7 @@
 typedef NS_ENUM(NSUInteger, YKFOpenPGPErrorDomain) {
   YKFOpenPGPErrorDomainSelectApplication = 0x00A44000,
   YKFOpenPGPErrorDomainApplicationRelatedData = 0x00CA006E,
+  YKFOpenPGPErrorDomainKDF = 0x00CA00F9,
   YKFOpenPGPErrorDomainVerifyPW1CDS = 0x00200081,
   YKFOpenPGPErrorDomainVerifyPW1Other = 0x00200082,
   YKFOpenPGPErrorDomainVerifyPW3 = 0x00200083,
