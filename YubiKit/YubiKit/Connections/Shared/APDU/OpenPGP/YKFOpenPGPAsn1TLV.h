@@ -284,6 +284,8 @@ typedef NS_ENUM(NSUInteger, YKFOpenPGPBERTLVLengthForm) {
  */
 @interface YKFOpenPGPBERTLV : NSObject <YKFOpenPGPTLVProtocol>
 
++ (instancytype) withEncodedBytes:(NSData *)encodedBytes;
+
 /**
  * @brief Initialize with pre-encoded bytes.
  *

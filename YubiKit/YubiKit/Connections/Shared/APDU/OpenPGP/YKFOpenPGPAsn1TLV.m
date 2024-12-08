@@ -484,6 +484,10 @@ typedef struct {
 
 @implementation YKFOpenPGPBERTLV
 
++ (instancetype) withEncodedBytes:(NSData *)encodedBytes {
+  return [[YKFOpenPGPBERTLV alloc] initWithEncodedBytes:encodedBytes];
+}
+
 - (instancetype)initWithEncodedBytes:(NSData *)encodedBytes {
   self = [super init];
   if (self == nil) {
