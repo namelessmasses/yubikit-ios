@@ -73,7 +73,8 @@ static dispatch_once_t buildErrorMapOnceToken;
   };
 
   errorCode = @{
-    @(YKFOpenPGPErrorCodeSelectedFileInvalidated) : @"Selected file invalidated",
+    @(YKFOpenPGPErrorCodeSelectedFileInvalidated) :
+        @"Selected file invalidated",
     @(YKFOpenPGPErrorCodeInvalidFCI) :
         @"FCI not formatted according to ISO 7816-4",
     @(YKFOpenPGPErrorCodeNotVerified) : @"Not verified",
