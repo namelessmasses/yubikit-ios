@@ -243,6 +243,8 @@ typedef NS_ENUM(NSUInteger, YKFOpenPGPBERTLVLengthForm) {
   YKFOpenPGPBERTLVLengthFormLong,
 } NS_SWIFT_NAME(YKFOpenPGPBERTLVLength.Form);
 
++ (instancetype) withEncodedBytes:(NSData *)encodedBytes;
+
 /**
  * @brief Initialize with pre-encoded bytes.
  *
@@ -330,7 +332,7 @@ typedef NS_ENUM(NSUInteger, YKFOpenPGPBERTLVLengthForm) {
  */
 @interface YKFOpenPGPBERTLV : NSObject <YKFOpenPGPTLVProtocol>
 
-+ (instancytype) withEncodedBytes:(NSData *)encodedBytes;
++ (instancetype) withEncodedBytes:(NSData *)encodedBytes;
 
 /**
  * @brief Initialize with pre-encoded bytes.
