@@ -21,6 +21,50 @@ typedef struct __attribute__((__packed__)) {
   UInt8 value[0];
 } YKFOpenPGPTLV;
 
+typedef NS_ENUM(NSUInteger, YKFOpenPGPTag) {
+  YKFOpenPGPTagOptionalDO = 0x0100,
+  YKFOpenPGPTagOptionalDO1 = 0x0101,
+  YKFOpenPGPTagOptionalDO2 = 0x0102,
+  YKFOpenPGPTagOptionalDO3 = 0x0103,
+  YKFOpenPGPTagOptionalDO4 = 0x0104,
+  YKFOpenPGPTagApplicationIdentifier = 0x4f,
+  YKFOpenPGPTagName = 0x5b,
+  YKFOpenPGPTagLoginData = 0x5e,
+  YKFOpenPGPTagLanguage = 0x5f2d,
+  YKFOpenPGPTagSex = 0x5f35,
+  YKFOpenPGPTagCardholderRelatedData = 0x65,
+  YKFOpenPGPTagApplicationRelatedData = 0x6e,
+  YKFOpenPGPTagURL = 0x5f50,
+  YKFOpenPGPTagHistoricalBytes = 0x5f52,
+  YKFOpenPGPTagSecuritySupport = 0x7a,
+  YKFOpenPGPTagDigitalSignatureCounter = 0x93,
+  YKFOpenPGPTagCardholderCertificate = 0x7f21,
+  YKFOpenPGPTagExtendedLengthInformation = 0x7f66,
+  YKFOpenPGPTagGeneralFeatureInformation = 0x7f74,
+  YKFOpenPGPTagDiscretionaryDataObjects = 0x0073,
+  YKFOpenPGPTagExtendedCapabilities = 0xc0,
+  YKGOpenPGPTagAlgorithmAttributesSignature = 0xc1,
+  YKFOpenPGPTagAlgorithmAttributesDecryption = 0xc2,
+  YKFOpenPGPTagAlgorithmAttributesAuthentication = 0xc3,
+  YKFOpenPGPTagPWStatusBytes = 0xc4,
+  YKFOpenPGPTagFingerprints = 0xc5,
+  YKFOpenPGPTagCAFingerprints = 0xc6,
+  YKFOpenPGPTagKeyGenerationDateTimes = 0xcd,
+  YKFOpenPGPTagKeyInformation = 0xde,
+  YKFOpenPGPTagUserInteractionFlagCDS = 0xd6,
+  YKFOpenPGPTagUserInteractionFlagDEC = 0xd7,
+  YKFOpenPGPTagUserInteractionFlagAUT = 0xd8,
+  YKFOpenPGPTagUserInteractionFlagATT = 0xd9,
+  YKFOpenPGPTagAttestationAlgorithmAttributes = 0xda,
+  YKFOpenPGPTagAttestationFingerprint = 0xdb,
+  YKFOpenPGPTagAttestationCAFingerprint = 0xdc,
+  YKFOpenPGPTagAttestationKeyGenerationDateTimes = 0xdd,
+  YKFOpenPGPTagKDF = 0xf9,
+  YKFOpenPGPTagAlgorithmInformation = 0xfa,
+  YKFOpenPGPTagSMSCP11b = 0xfb,
+  YKFOpenPGPTagAttestationCertificate = 0xfc
+};
+
 /**
  * @brief Tag used commonly in OpenPGP commands and responses.
  *
