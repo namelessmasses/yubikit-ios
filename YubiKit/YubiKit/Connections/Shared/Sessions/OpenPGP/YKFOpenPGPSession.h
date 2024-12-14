@@ -73,8 +73,6 @@ typedef void (^YKFOpenPGPSessionCompletion)(
                              completion:(YKFOpenPGPSessionCompletion _Nonnull)
                                             completion;
 
-- (instancetype)init NS_UNAVAILABLE;
-
 typedef void (^YKFOpenPGPPINVerifyCompletion)(NSError *_Nullable error);
 
 - (void)verifyPW1:(NSString *)pw1
