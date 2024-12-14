@@ -169,11 +169,11 @@ typedef struct {
   [encodedBytes appendBytes:&leadingByte length:1];
 
   // The tag number is encoded in big-endian order.
-  UInt32 subsequentByteCount = tagNumber / 0x7F;
+  UInt64 subsequentByteCount = tagNumber / 0x7F;
 
   while ((tagNumber >> (subsequentByteCount * 7)) > 0) {
     UInt8 subsequentByte =
-        0x80 | (tagNumber >> (subsequentByteCount * 7)) & 0x7F;
+        0x80 | ((tagNumber >> (subsequentByteCount * 7)) & 0x7F);
     [encodedBytes appendBytes:&subsequentByte length:1];
     --subsequentByteCount;
   }
