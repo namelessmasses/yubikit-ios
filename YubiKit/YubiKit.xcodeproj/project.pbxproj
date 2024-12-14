@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -29,6 +29,16 @@
 		51E1B9932577EF05003C1CA4 /* YKFOATHCredentialWithCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 51E1B9922577EF05003C1CA4 /* YKFOATHCredentialWithCode.m */; };
 		51F8E3C42639856A0010686B /* YKFManagementDeviceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 51F8E3C32639856A0010686B /* YKFManagementDeviceInfo.m */; };
 		51F8E3C7263989520010686B /* YKFManagementSessionFeatures.m in Sources */ = {isa = PBXBuildFile; fileRef = 51F8E3C6263989520010686B /* YKFManagementSessionFeatures.m */; };
+		571CBCB32D0E186000C7F6F0 /* YKFOpenPGPComputeDigitalSignatureAPDU.m in Sources */ = {isa = PBXBuildFile; fileRef = 571CBCA82D0E186000C7F6F0 /* YKFOpenPGPComputeDigitalSignatureAPDU.m */; };
+		571CBCB42D0E186000C7F6F0 /* YKFOpenPGPDecipherAPDU.m in Sources */ = {isa = PBXBuildFile; fileRef = 571CBCAA2D0E186000C7F6F0 /* YKFOpenPGPDecipherAPDU.m */; };
+		571CBCB52D0E186000C7F6F0 /* YKFOpenPGPApplicationRelatedDataAPDU.m in Sources */ = {isa = PBXBuildFile; fileRef = 571CBCA42D0E186000C7F6F0 /* YKFOpenPGPApplicationRelatedDataAPDU.m */; };
+		571CBCB62D0E186000C7F6F0 /* YKFOpenPGPAsn1TLV.m in Sources */ = {isa = PBXBuildFile; fileRef = 571CBCA62D0E186000C7F6F0 /* YKFOpenPGPAsn1TLV.m */; };
+		571CBCB72D0E186000C7F6F0 /* YKFOpenPGPVerifyAPDU.m in Sources */ = {isa = PBXBuildFile; fileRef = 571CBCB12D0E186000C7F6F0 /* YKFOpenPGPVerifyAPDU.m */; };
+		571CBCB82D0E186000C7F6F0 /* YKFOpenPGPGetDataAPDU.m in Sources */ = {isa = PBXBuildFile; fileRef = 571CBCAE2D0E186000C7F6F0 /* YKFOpenPGPGetDataAPDU.m */; };
+		571CBCB92D0E186000C7F6F0 /* YKFOpenPGPGetChallengeAPDU.m in Sources */ = {isa = PBXBuildFile; fileRef = 571CBCAC2D0E186000C7F6F0 /* YKFOpenPGPGetChallengeAPDU.m */; };
+		571CBCBC2D0E18A600C7F6F0 /* YKFOpenPGPError.m in Sources */ = {isa = PBXBuildFile; fileRef = 571CBCBB2D0E18A600C7F6F0 /* YKFOpenPGPError.m */; };
+		571CBCC02D0E18D000C7F6F0 /* YKFOpenPGPSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 571CBCBE2D0E18D000C7F6F0 /* YKFOpenPGPSession.m */; };
+		571CBCC22D0E1B2F00C7F6F0 /* YKFOpenPGPAsn1Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 571CBCC12D0E1B0F00C7F6F0 /* YKFOpenPGPAsn1Tests.m */; };
 		81311F3A23AAFA4A00765522 /* YKFChallengeResponseSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 81311F3923AAFA4A00765522 /* YKFChallengeResponseSession.m */; };
 		813271EC240F265B0084E105 /* YKFManagementSession.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 814813E923EA381F0003893B /* YKFManagementSession.h */; };
 		814813D123EA37F60003893B /* YKFManagementWriteAPDU.m in Sources */ = {isa = PBXBuildFile; fileRef = 814813CD23EA37F60003893B /* YKFManagementWriteAPDU.m */; };
@@ -364,6 +374,26 @@
 		51F8E3C52639893D0010686B /* YKFManagementSessionFeatures.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKFManagementSessionFeatures.h; sourceTree = "<group>"; };
 		51F8E3C6263989520010686B /* YKFManagementSessionFeatures.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKFManagementSessionFeatures.m; sourceTree = "<group>"; };
 		51F8E3C8263A95AB0010686B /* YKFManagementDeviceInfo+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YKFManagementDeviceInfo+Private.h"; sourceTree = "<group>"; };
+		571CBCA32D0E186000C7F6F0 /* YKFOpenPGPApplicationRelatedDataAPDU.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKFOpenPGPApplicationRelatedDataAPDU.h; sourceTree = "<group>"; };
+		571CBCA42D0E186000C7F6F0 /* YKFOpenPGPApplicationRelatedDataAPDU.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKFOpenPGPApplicationRelatedDataAPDU.m; sourceTree = "<group>"; };
+		571CBCA52D0E186000C7F6F0 /* YKFOpenPGPAsn1TLV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKFOpenPGPAsn1TLV.h; sourceTree = "<group>"; };
+		571CBCA62D0E186000C7F6F0 /* YKFOpenPGPAsn1TLV.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKFOpenPGPAsn1TLV.m; sourceTree = "<group>"; };
+		571CBCA72D0E186000C7F6F0 /* YKFOpenPGPComputeDigitalSignatureAPDU.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKFOpenPGPComputeDigitalSignatureAPDU.h; sourceTree = "<group>"; };
+		571CBCA82D0E186000C7F6F0 /* YKFOpenPGPComputeDigitalSignatureAPDU.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKFOpenPGPComputeDigitalSignatureAPDU.m; sourceTree = "<group>"; };
+		571CBCA92D0E186000C7F6F0 /* YKFOpenPGPDecipherAPDU.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKFOpenPGPDecipherAPDU.h; sourceTree = "<group>"; };
+		571CBCAA2D0E186000C7F6F0 /* YKFOpenPGPDecipherAPDU.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKFOpenPGPDecipherAPDU.m; sourceTree = "<group>"; };
+		571CBCAB2D0E186000C7F6F0 /* YKFOpenPGPGetChallengeAPDU.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKFOpenPGPGetChallengeAPDU.h; sourceTree = "<group>"; };
+		571CBCAC2D0E186000C7F6F0 /* YKFOpenPGPGetChallengeAPDU.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKFOpenPGPGetChallengeAPDU.m; sourceTree = "<group>"; };
+		571CBCAD2D0E186000C7F6F0 /* YKFOpenPGPGetDataAPDU.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKFOpenPGPGetDataAPDU.h; sourceTree = "<group>"; };
+		571CBCAE2D0E186000C7F6F0 /* YKFOpenPGPGetDataAPDU.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKFOpenPGPGetDataAPDU.m; sourceTree = "<group>"; };
+		571CBCAF2D0E186000C7F6F0 /* YKFOpenPGPHashAlgorithm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKFOpenPGPHashAlgorithm.h; sourceTree = "<group>"; };
+		571CBCB02D0E186000C7F6F0 /* YKFOpenPGPVerifyAPDU.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKFOpenPGPVerifyAPDU.h; sourceTree = "<group>"; };
+		571CBCB12D0E186000C7F6F0 /* YKFOpenPGPVerifyAPDU.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKFOpenPGPVerifyAPDU.m; sourceTree = "<group>"; };
+		571CBCBA2D0E18A600C7F6F0 /* YKFOpenPGPError.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKFOpenPGPError.h; sourceTree = "<group>"; };
+		571CBCBB2D0E18A600C7F6F0 /* YKFOpenPGPError.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKFOpenPGPError.m; sourceTree = "<group>"; };
+		571CBCBD2D0E18D000C7F6F0 /* YKFOpenPGPSession.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKFOpenPGPSession.h; sourceTree = "<group>"; };
+		571CBCBE2D0E18D000C7F6F0 /* YKFOpenPGPSession.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKFOpenPGPSession.m; sourceTree = "<group>"; };
+		571CBCC12D0E1B0F00C7F6F0 /* YKFOpenPGPAsn1Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKFOpenPGPAsn1Tests.m; sourceTree = "<group>"; };
 		811F91EF2383C57B002158ED /* Changelog.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = Changelog.md; path = ../Changelog.md; sourceTree = "<group>"; };
 		81311F3823AAFA4A00765522 /* YKFChallengeResponseSession.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YKFChallengeResponseSession.h; sourceTree = "<group>"; };
 		81311F3923AAFA4A00765522 /* YKFChallengeResponseSession.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YKFChallengeResponseSession.m; sourceTree = "<group>"; };
@@ -713,6 +743,38 @@
 			path = PIV;
 			sourceTree = "<group>";
 		};
+		571CBCB22D0E186000C7F6F0 /* OpenPGP */ = {
+			isa = PBXGroup;
+			children = (
+				571CBCA32D0E186000C7F6F0 /* YKFOpenPGPApplicationRelatedDataAPDU.h */,
+				571CBCA42D0E186000C7F6F0 /* YKFOpenPGPApplicationRelatedDataAPDU.m */,
+				571CBCA52D0E186000C7F6F0 /* YKFOpenPGPAsn1TLV.h */,
+				571CBCA62D0E186000C7F6F0 /* YKFOpenPGPAsn1TLV.m */,
+				571CBCA72D0E186000C7F6F0 /* YKFOpenPGPComputeDigitalSignatureAPDU.h */,
+				571CBCA82D0E186000C7F6F0 /* YKFOpenPGPComputeDigitalSignatureAPDU.m */,
+				571CBCA92D0E186000C7F6F0 /* YKFOpenPGPDecipherAPDU.h */,
+				571CBCAA2D0E186000C7F6F0 /* YKFOpenPGPDecipherAPDU.m */,
+				571CBCAB2D0E186000C7F6F0 /* YKFOpenPGPGetChallengeAPDU.h */,
+				571CBCAC2D0E186000C7F6F0 /* YKFOpenPGPGetChallengeAPDU.m */,
+				571CBCAD2D0E186000C7F6F0 /* YKFOpenPGPGetDataAPDU.h */,
+				571CBCAE2D0E186000C7F6F0 /* YKFOpenPGPGetDataAPDU.m */,
+				571CBCAF2D0E186000C7F6F0 /* YKFOpenPGPHashAlgorithm.h */,
+				571CBCB02D0E186000C7F6F0 /* YKFOpenPGPVerifyAPDU.h */,
+				571CBCB12D0E186000C7F6F0 /* YKFOpenPGPVerifyAPDU.m */,
+			);
+			name = OpenPGP;
+			path = YubiKit/Connections/Shared/APDU/OpenPGP;
+			sourceTree = SOURCE_ROOT;
+		};
+		571CBCBF2D0E18D000C7F6F0 /* OpenPGP */ = {
+			isa = PBXGroup;
+			children = (
+				571CBCBD2D0E18D000C7F6F0 /* YKFOpenPGPSession.h */,
+				571CBCBE2D0E18D000C7F6F0 /* YKFOpenPGPSession.m */,
+			);
+			path = OpenPGP;
+			sourceTree = "<group>";
+		};
 		81311F3723AAF9F400765522 /* ChalResp */ = {
 			isa = PBXGroup;
 			children = (
@@ -907,6 +969,7 @@
 				9564333520A5C03C007621BD /* YKFOTPTokenParserTests.m */,
 				95885B3020A31EFF00828D02 /* YKFOTPTokenValidatorTests.m */,
 				9564333120A58EDA007621BD /* YKFOTPURIParserTests.m */,
+				571CBCC12D0E1B0F00C7F6F0 /* YKFOpenPGPAsn1Tests.m */,
 				5110D69F2600E00900467680 /* YKFPIVPaddingTests.m */,
 				957D869821B825B4004ABF86 /* YKFSmartCardInterfaceTests.m */,
 				9529CBC0214927D80041D2F8 /* YKFU2FServiceTests.m */,
@@ -1007,6 +1070,7 @@
 				95D9D3D921D510A700473888 /* FIDO2 */,
 				814813E623EA38120003893B /* Management */,
 				958139562159281D008558F3 /* OATH */,
+				571CBCBF2D0E18D000C7F6F0 /* OpenPGP */,
 				51ACC2F425D5857F0069214B /* PIV */,
 				958139552159280B008558F3 /* U2F */,
 			);
@@ -1289,6 +1353,7 @@
 				815233EE23AD4374004D4788 /* ChalResp */,
 				956DBB8621EDFE19004D6EE3 /* FIDO2 */,
 				9581395121591D94008558F3 /* OATH */,
+				571CBCB22D0E186000C7F6F0 /* OpenPGP */,
 				9581395021591D32008558F3 /* U2F */,
 			);
 			path = APDU;
@@ -1314,6 +1379,8 @@
 				51ACC34A25E7ECA80069214B /* YKFPIVError.m */,
 				B42849902C23061B0000F8CF /* YKFInvalidPinError.h */,
 				B428498E2C2305EA0000F8CF /* YKFInvalidPinError.m */,
+				571CBCBA2D0E18A600C7F6F0 /* YKFOpenPGPError.h */,
+				571CBCBB2D0E18A600C7F6F0 /* YKFOpenPGPError.m */,
 			);
 			path = Errors;
 			sourceTree = "<group>";
@@ -1398,7 +1465,8 @@
 		95C29609206247210091318B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1220;
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1610;
 				ORGANIZATIONNAME = Yubico;
 				TargetAttributes = {
 					95885B2420A3187700828D02 = {
@@ -1462,6 +1530,7 @@
 				956884D020AAFE9300E0F72C /* FakeYKFOTPTextParser.m in Sources */,
 				5117C10625F692C300F4081A /* FakeYKFConnectionController.m in Sources */,
 				956884C820AAE6F200E0F72C /* YKFNSDataAdditions.m in Sources */,
+				571CBCC22D0E1B2F00C7F6F0 /* YKFOpenPGPAsn1Tests.m in Sources */,
 				5110D6A02600E00A00467680 /* YKFPIVPaddingTests.m in Sources */,
 				956884C520AADA5A00E0F72C /* FakeNFCNDEFReaderSession.m in Sources */,
 				95885B3120A31EFF00828D02 /* YKFOTPTokenValidatorTests.m in Sources */,
@@ -1515,6 +1584,7 @@
 				95C29635206259050091318B /* UIDeviceAdditions.m in Sources */,
 				955188302265F4EE001A4191 /* YKFAPDUError.m in Sources */,
 				9581395421591DE1008558F3 /* YKFSelectOATHApplicationAPDU.m in Sources */,
+				571CBCBC2D0E18A600C7F6F0 /* YKFOpenPGPError.m in Sources */,
 				95BA204521F7483100EED927 /* YKFFIDO2GetAssertionResponse.m in Sources */,
 				51ACC33625E50C860069214B /* NSArray+YKFTLVRecord.m in Sources */,
 				B428498F2C2305EA0000F8CF /* YKFInvalidPinError.m in Sources */,
@@ -1593,9 +1663,17 @@
 				95EEEF6C2167AB6A00BE7D7B /* YKFOATHCalculateAPDU.m in Sources */,
 				51E1B9862577993C003C1CA4 /* YKFOATHCredentialUtils.m in Sources */,
 				9578A61521F20BA400349DCF /* YKFFIDO2MakeCredentialAPDU.m in Sources */,
+				571CBCB32D0E186000C7F6F0 /* YKFOpenPGPComputeDigitalSignatureAPDU.m in Sources */,
+				571CBCB42D0E186000C7F6F0 /* YKFOpenPGPDecipherAPDU.m in Sources */,
+				571CBCB52D0E186000C7F6F0 /* YKFOpenPGPApplicationRelatedDataAPDU.m in Sources */,
+				571CBCB62D0E186000C7F6F0 /* YKFOpenPGPAsn1TLV.m in Sources */,
+				571CBCB72D0E186000C7F6F0 /* YKFOpenPGPVerifyAPDU.m in Sources */,
+				571CBCB82D0E186000C7F6F0 /* YKFOpenPGPGetDataAPDU.m in Sources */,
+				571CBCB92D0E186000C7F6F0 /* YKFOpenPGPGetChallengeAPDU.m in Sources */,
 				9547C9DD216B59E2001E1F4A /* YKFOATHCode.m in Sources */,
 				95DD40782099A4EB00363FEE /* YKFNSDataAdditions.m in Sources */,
 				95C2963D2062634C0091318B /* YKFViewController.m in Sources */,
+				571CBCC02D0E18D000C7F6F0 /* YKFOpenPGPSession.m in Sources */,
 				956DB66F20639C2B006B1738 /* YKFQRCodeScanOverlayView.m in Sources */,
 				952CB9EC220D835F004A7624 /* YKFFIDO2PinAuthKey.m in Sources */,
 				B4C9BBCB2A05547400FFDFD6 /* NSData+GZIP.m in Sources */,
@@ -1625,10 +1703,14 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = LQA3CS5MM7;
+				DEVELOPMENT_TEAM = 2HB8BPAWAQ;
 				INFOPLIST_FILE = YubiKitTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				OTHER_LDFLAGS = "-ObjcC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yubico.YubiKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1641,10 +1723,14 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = LQA3CS5MM7;
+				DEVELOPMENT_TEAM = 2HB8BPAWAQ;
 				INFOPLIST_FILE = YubiKitTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				OTHER_LDFLAGS = "-ObjcC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yubico.YubiKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1656,6 +1742,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1689,6 +1776,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1714,6 +1802,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1748,6 +1837,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1768,6 +1858,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LQA3CS5MM7;
+				IPHONEOS_DEPLOYMENT_TARGET = 12;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1780,6 +1871,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LQA3CS5MM7;
+				IPHONEOS_DEPLOYMENT_TARGET = 12;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
