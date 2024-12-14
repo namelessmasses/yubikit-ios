@@ -224,7 +224,7 @@ typedef NS_ENUM(NSUInteger, YKFOpenPGPBERTLVTagType) {
 /**
  * @brief Encodes the integer according to ISO-7816 Part 4 section 5.4.4.
  *
- * @param i encodes the integer into 1 or 3 bytes. 0 <= i < 255 encodes as `i`.
+ * @param length encodes the integer into 1 or 3 bytes. 0 <= i < 255 encodes as `i`.
  * 255 <= i < 65536 encodes as `FF ii ii`.
  */
 - (instancetype)initWithInteger:(uint16_t)length;
